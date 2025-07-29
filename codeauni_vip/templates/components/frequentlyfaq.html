@@ -1,0 +1,351 @@
+<section class="py-24" id="preguntas-frecuentes">
+  <div class="mx-auto max-w-7xl px-4 md:px-4 lg:px-4 xl:px-0">
+    <div class="mb-10 md:mb-16 lg:mb-16 xl:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-center text-white">
+          Preguntas frecuentes<br> 
+          <span style="background: linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">respuestas rápidas</span>
+        </h2>
+    </div>
+
+    <div class="space-y-6" x-data="{ selected: null }">
+
+      <!-- ITEM 1 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 1 ? selected = 1 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Cuáles son los medios de pago permitidos para comprar una suscripción?
+          </span>
+          <svg x-show="selected !== 1" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 1" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 1" x-collapse class="mt-4 text-gray-300">
+          Aceptamos tarjetas de crédito y débito, transferencias bancarias, y pagos a través de plataformas digitales como PayPal y Mercado Pago.
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 2 ? selected = 2 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Cuántos usuarios pueden estudiar con una suscripción?
+          </span>
+          <svg x-show="selected !== 2" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 2" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 2" x-collapse class="mt-4 text-gray-300">
+          Cada suscripción está diseñada para un usuario individual. Para múltiples usuarios, contáctanos para opciones empresariales.
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 3 ? selected = 3 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Aceptan criptomoneda como opción de pago?
+          </span>
+          <svg x-show="selected !== 3" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 3" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 3" x-collapse class="mt-4 text-gray-300">
+          Actualmente no aceptamos criptomonedas como método de pago. Trabajamos con métodos de pago tradicionales y seguros.
+        </div>
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 4 ? selected = 4 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Si estoy en Perú, aplicada MSI (meses sin intereses)?
+          </span>
+          <svg x-show="selected !== 4" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 4" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 4" x-collapse class="mt-4 text-gray-300">
+          Sí, ofrecemos MSI en Perú para suscripciones anuales con tarjetas participantes. Consulta con tu banco para confirmar elegibilidad.
+        </div>
+      </div>
+
+      <!-- ITEM 5 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 5 ? selected = 5 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo cancelar mi suscripción en cualquier momento?
+          </span>
+          <svg x-show="selected !== 5" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 5" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 5" x-collapse class="mt-4 text-gray-300">
+          Sí, puedes cancelar tu suscripción en cualquier momento desde tu panel de usuario. La cancelación será efectiva al final del período facturado.
+        </div>
+      </div>
+
+      <!-- ITEM 6 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 6 ? selected = 6 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Qué sucede si cancelo antes que termine mi suscripción?
+          </span>
+          <svg x-show="selected !== 6" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 6" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 6" x-collapse class="mt-4 text-gray-300">
+          Mantendrás acceso completo hasta el final del período facturado. No se realizan reembolsos por cancelaciones anticipadas.
+        </div>
+      </div>
+
+      <!-- ITEM 7 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 7 ? selected = 7 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿La suscripción se renueva automáticamente?
+          </span>
+          <svg x-show="selected !== 7" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 7" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 7" x-collapse class="mt-4 text-gray-300">
+          Sí, las suscripciones se renuevan automáticamente. Puedes desactivar la renovación automática desde tu panel de usuario en cualquier momento.
+        </div>
+      </div>
+
+      <!-- ITEM 8 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 8 ? selected = 8 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo probar la plataforma antes de suscribirme?
+          </span>
+          <svg x-show="selected !== 8" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 8" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 8" x-collapse class="mt-4 text-gray-300">
+          Sí, ofrecemos una prueba gratuita de 7 días para que puedas explorar la plataforma y evaluar si se adapta a tus necesidades.
+        </div>
+      </div>
+
+      <!-- ITEM 9 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 9 ? selected = 9 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo cambiar de plan después de haberme suscrito?
+          </span>
+          <svg x-show="selected !== 9" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 9" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 9" x-collapse class="mt-4 text-gray-300">
+          Sí, puedes cambiar de plan en cualquier momento. Los cambios se aplicarán en el próximo ciclo de facturación.
+        </div>
+      </div>
+
+      <!-- ITEM 10 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 10 ? selected = 10 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo compartir mi suscripción con alguien más?
+          </span>
+          <svg x-show="selected !== 10" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 10" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 10" x-collapse class="mt-4 text-gray-300">
+          No, las suscripciones son de uso individual. Para múltiples usuarios, contáctanos para opciones empresariales.
+        </div>
+      </div>
+
+      <!-- ITEM 11 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 11 ? selected = 11 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo pausar mi suscripción?
+          </span>
+          <svg x-show="selected !== 11" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 11" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 11" x-collapse class="mt-4 text-gray-300">
+          Sí, puedes pausar tu suscripción por hasta 3 meses. Durante la pausa, no tendrás acceso pero tampoco se te cobrará.
+        </div>
+      </div>
+
+      <!-- ITEM 12 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 12 ? selected = 12 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Puedo acceder a los cursos sin conexión a internet?
+          </span>
+          <svg x-show="selected !== 12" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 12" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 12" x-collapse class="mt-4 text-gray-300">
+          Sí, puedes descargar contenido para ver sin conexión. Los videos y materiales estarán disponibles por 30 días después de la descarga.
+        </div>
+      </div>
+
+      <!-- ITEM 13 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 13 ? selected = 13 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Las suscripciones incluyen certificados de finalización?
+          </span>
+          <svg x-show="selected !== 13" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 13" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 13" x-collapse class="mt-4 text-gray-300">
+          Sí, todas las suscripciones incluyen certificados de finalización que puedes descargar al completar cada curso.
+        </div>
+      </div>
+
+      <!-- ITEM 14 -->
+      <div class="rounded-xl p-4 bg-[#0068FF]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== 14 ? selected = 14 : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            ¿Los precios incluyen descuentos adicionales?
+          </span>
+          <svg x-show="selected !== 14" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === 14" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === 14" x-collapse class="mt-4 text-gray-300">
+          Ofrecemos descuentos para estudiantes, grupos y suscripciones anuales. También tenemos promociones especiales durante eventos educativos.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
