@@ -124,7 +124,7 @@ STATIC_URL = 'static/'
 
 # Configuración adicional para archivos estáticos
 STATICFILES_DIRS = [
-    BASE_DIR / 'main' / 'images',
+    BASE_DIR / 'theme' / 'static',
 ]
 
 
