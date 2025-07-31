@@ -4,7 +4,9 @@
   "description": "Tailwind CSS theme for Django",
   "scripts": {
     "build": "tailwindcss -i ./src/styles.css -o ../static/css/styles.css --watch",
-    "build-prod": "tailwindcss -i ./src/styles.css -o ../static/css/styles.css --minify"
+    "build-prod": "tailwindcss -i ./src/styles.css -o ../static/css/styles.css --minify",
+    "build-css": "tailwindcss -i ./src/styles.css -o ../static/css/styles.css",
+    "watch": "tailwindcss -i ./src/styles.css -o ../static/css/styles.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"
