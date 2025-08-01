@@ -20,12 +20,13 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path
-from main.views import home, ponents
+from main.views import home, ponents, business
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('ponentes/', ponents, name='ponents'),
+    path('business/', business, name='business'),
 ]
 
 if settings.DEBUG:

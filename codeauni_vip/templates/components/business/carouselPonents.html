@@ -1,0 +1,96 @@
+
+{% load static %}
+    <section class="text-white pb-12 overflow-hidden bg-black-2">
+      <div class="mx-auto w-screen">
+        <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white">
+             Conoce a nuestros<br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">PONENTES</span>
+          </h2>
+
+        <div class="bar "></div>
+        </div>
+
+        <div class="relative overflow-hidden">
+          <div class="flex animate-scroll">
+            <div class="flex flex-nowrap gap-6">
+              {% for docente in docentes %}
+              <!-- Testimonio dinámico -->
+              <div class="flex-shrink-0 w-96 px-4">
+                <div class=" text-white py-6 px-4 rounded-xl h-full flex flex-col items-center justify-center gap-4"style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);">
+                  <div class="flex-shrink-0">
+                    {% if docente.foto %}
+                  <img src="{{ docente.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
+                {% else %}
+                  <img src="{% static 'students.jpg' %}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
+                {% endif %}
+                  </div>
+                  
+                  <div class="flex flex-col items-center text-center">
+                    <!-- Nombre y título -->
+                    <div>
+                      <h4 class="font-bold text-base text-white">{{ docente.nombre }}</h4>
+                      <p class="text-white italic">{{ docente.profesion }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            
+            <!-- Duplicado para scroll infinito -->
+            <div class="flex flex-nowrap gap-6">
+              {% for docente in docentes %}
+              <!-- Testimonio dinámico duplicado -->
+              <div class="flex-shrink-0 w-96 px-4">
+                <div class=" text-white py-6 px-4 rounded-xl h-full flex flex-col items-center justify-center gap-4" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);">
+                  <div class="flex-shrink-0">
+                   {% if docente.foto %}
+                    <img src="{{ docente.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
+                  {% else %}
+                    <img src="{% static 'students.jpg' %}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
+                  {% endif %}
+                  </div>
+                  
+                  <div class="flex flex-col items-center text-center">
+                    <!-- Nombre y título -->
+                    <div>
+                      <h4 class="font-bold text-base text-white">{{ docente.nombre }}</h4>
+                      <p class="text-white italic">{{ docente.profesion }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-scroll {
+    animation: scroll 25.5s linear infinite;
+  }
+
+  .hide-scrollbar {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
+
+
+</style>
