@@ -1,0 +1,54 @@
+<section class="" id="envivo">
+  <div class="mx-auto max-w-7xl px-0 md:px-4 lg:px-4 xl:px-0">
+    <div class="space-y-6" x-data="{ selected: null }">
+      {% for tema in temas %}
+      <div class="rounded-xl p-4 bg-[#032744]">
+        <button
+          class="w-full flex justify-between items-center text-left text-lg text-white font-medium"
+          @click="selected !== {{ forloop.counter }} ? selected = {{ forloop.counter }} : selected = null"
+        >
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="#00E7FF">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            {{ tema.titulo }}
+          </span>
+          <svg x-show="selected !== {{ forloop.counter }}" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg x-show="selected === {{ forloop.counter }}" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+          </svg>
+        </button>
+        <div x-show="selected === {{ forloop.counter }}" x-collapse class="mt-4 text-gray-300">
+          <div class="mt-6 space-y-3">
+            {% for capitulo in capitulos_envivo %}
+              {% if capitulo.tema == tema %}
+              <div class="bg-[#0a4a6b] rounded-lg p-3">
+                <div class="flex justify-between">
+                  <div><h5 class="text-white font-medium">{{ capitulo.titulo }}</h5></div>
+                  <div class="flex gap-4 mt-1 items-center">
+                    {% if capitulo.dias_disponibles %}
+                    <div class="text-xs text-gray-300">
+                      {% for dia in capitulo.dias_disponibles %}
+                        <span class="bg-yellow-500 text-black px-1 py-0.5 rounded text-xs">{{ dia }}</span>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            {% empty %}
+              <p class="text-gray-400 text-sm">No hay capítulos disponibles para este tema.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

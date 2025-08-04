@@ -1,15 +1,16 @@
 from django.db import models
+
 from multiselectfield import MultiSelectField
 
 
-class Tema(models.Model):
+class TemaBusiness(models.Model):
     titulo = models.CharField(max_length=200)
 
     def __str__(self):
         return self.titulo
 
 
-class Capitulo(models.Model):
+class CapituloBusiness(models.Model):
     ENTREGA_CHOICES = [
         ('', 'Seleccionar'),
         ('ondemand', 'On Demand'),
@@ -33,7 +34,7 @@ class Capitulo(models.Model):
     ]
 
     titulo = models.CharField(max_length=200)
-    tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='capitulos')
+    tema = models.ForeignKey(TemaBusiness, on_delete=models.CASCADE, related_name='capitulos_business')
     
     tipo_entrega = models.CharField(
         max_length=20,
@@ -59,5 +60,3 @@ class Capitulo(models.Model):
 
     def __str__(self):
         return f"{self.titulo} ({self.tema.titulo})"
-    
-

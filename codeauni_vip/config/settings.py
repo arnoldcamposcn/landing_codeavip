@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pir0$j98%k=(q!=0ioni_h!y0uc=-h7@bn-+zn@9-#2fcfwqn6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['3.89.67.166']
+# ALLOWED_HOSTS = ['3.89.67.166']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'theme',
     'main',
     'packages',
+    'packages_business',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,7 @@ STATIC_URL = '/static/'
 
 # Configuración adicional para archivos estáticos
 STATICFILES_DIRS = [
+    BASE_DIR / 'main' / 'images',
     BASE_DIR / 'theme' / 'static',
 ]
 

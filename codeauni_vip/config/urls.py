@@ -20,13 +20,15 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path
-from main.views import home, ponents, business
+from main.views import home, ponents, business, guardar_formulario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('ponentes/', ponents, name='ponents'),
     path('business/', business, name='business'),
+    path('api/guardar-formulario/', guardar_formulario, name='guardar_formulario'),
+
 ]
 
 if settings.DEBUG:

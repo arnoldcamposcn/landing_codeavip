@@ -22,15 +22,14 @@ class Estudiantes(models.Model):
         return self.nombre
 
 
+
 class HistoriaVideo(models.Model):
-    nombre = models.CharField("Nombre", max_length=200)
-    video = models.FileField("Video", upload_to='historias/')
-    reel = models.URLField("Enlace al Reel", blank=True, null=True)
+    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)  # <- ahora no requerido
+    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)  # <- no requerido
+    reel = models.URLField("Enlace al Reel", blank=True, null=True)  # ya estaba opcional
 
     def __str__(self):
-        return self.nombre
-
-
+        return self.nombre or "Sin nombre"
 
 
 
@@ -57,10 +56,24 @@ class EstudiantesBusiness(models.Model):
     
 
 class HistoriaVideoBusiness(models.Model):
-    nombre = models.CharField("Nombre", max_length=200)
-    video = models.FileField("Video", upload_to='historias/')
-    reel = models.URLField("Enlace al Reel", blank=True, null=True)
+    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)  # <- ahora no requerido
+    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)  # <- no requerido
+    reel = models.URLField("Enlace al Reel", blank=True, null=True)  # ya estaba opcional
 
     def __str__(self):
-        return self.nombre
+        return self.nombre or "Sin nombre"
 
+
+
+class MembresiaFormulario(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=20)
+    correo = models.EmailField()
+    pais = models.CharField(max_length=100)
+    especializacion = models.CharField(max_length=50)
+    perfil = models.CharField(max_length=20)
+    membresia = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - {self.membresia} membresía(s)"
