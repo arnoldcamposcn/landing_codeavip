@@ -1,5 +1,28 @@
-function openFormPayment() {
-  let formSubmitted = false; // ✅ Flag para controlar si el formulario fue enviado
+function openFormPayment(tipo = 'estudiante') {
+  let formSubmitted = false;
+
+  const precios = {
+    estudiante: {
+      label: 'Estudiante',
+      detalles: [
+        '1 Membresía Estudiante $149.90/año',
+        '2 Membresías Estudiante $269.82/año',
+        '3 Membresías Estudiante $359.76/año'
+      ],
+      endpoint: '/api/guardar-formulario/'
+    },
+    profesional: {
+      label: 'Profesional',
+      detalles: [
+        '1 Membresía Profesional $249.90/año',
+        '2 Membresías Profesional $449.82/año',
+        '3 Membresías Profesional $599.76/año'
+      ],
+      endpoint: '/api/guardar-formulario-profesional/'
+    }
+  };
+
+  const datos = precios[tipo] || precios.estudiante;
 
   Swal.fire({
     title: ' ',
@@ -10,34 +33,21 @@ function openFormPayment() {
     html: `
       <form id="vip-form" class="text-left text-sm text-black space-y-4 font-sans">
 
-        <h2 class="text-center text-lg font-semibold">Selecciona tu membresía</h2>
+        <h2 class="text-center text-lg font-semibold">Selecciona tu membresía (${datos.label})</h2>
 
         <div class="space-y-3">
-          <label class="flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center peer-checked:bg-blue-100 transition-all border-[#00D2FF]">
-            <input type="radio" name="membresia" value="1" class="hidden peer" required>
-            <span class="text-[32px] font-bold leading-none text-black">1 Membresía</span>
-            <span class="text-[16px] text-gray-600 font-medium">CODEa VIP</span>
-          </label>
-
-          <h3 class="text-center text-sm font-semibold text-gray-500 -mb-2 mt-2">¡Invita a tus amigos!</h3>
-
-          <label class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-white text-center peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300 transition-all border-[#00D2FF]">
-            <input type="radio" name="membresia" value="2" class="hidden peer">
-            <span class="text-[32px] font-bold leading-none text-black">2 Membresía</span>
-            <span class="text-[16px] text-gray-600 font-medium">CODEa VIP</span>
-            <span class="absolute top-2 right-3 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-md">10%Off</span>
-          </label>
-
-          <label class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300 transition-all border-[#00D2FF]">
-            <input type="radio" name="membresia" value="3" class="hidden peer">
-            <span class="text-[32px] font-bold leading-none text-black">3 Membresía</span>
-            <span class="text-[16px] text-gray-600 font-medium">CODEa VIP</span>
-            <span class="absolute top-2 right-3 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-md">20%Off</span>
-          </label>
+          ${datos.detalles.map((detalle, index) => `
+            <label class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300 transition-all border-[#00D2FF]">
+              <input type="radio" name="membresia" value="${index + 1}" class="hidden peer" ${index === 0 ? 'required' : ''}>
+              <span class="text-[32px] font-bold leading-none text-black">${index + 1} Membresía</span>
+              <span class="text-[16px] text-gray-600 font-medium">CODEa VIP</span>
+              ${index > 0 ? `<span class="absolute top-2 right-3 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-md">${index * 10}%Off</span>` : ''}
+            </label>
+          `).join('')}
         </div>
 
         <div>Detalles:
-          <p id="detalles-membresia">1 Membresía Estudiante $149.90/año</p>
+          <p id="detalles-membresia">${datos.detalles[0]}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
@@ -77,16 +87,9 @@ function openFormPayment() {
       const detalleMembresiaSeleccionada = document.getElementById('detalle-membresia-seleccionada');
       const membresiaDetalle = document.getElementById('membresia-detalle');
 
-      const radios = form.querySelectorAll('input[name="membresia"]');
-      radios.forEach(radio => {
+      form.querySelectorAll('input[name="membresia"]').forEach(radio => {
         radio.addEventListener('change', () => {
-          if (radio.value === '1') {
-            detallesMembresia.textContent = '1 Membresía Estudiante $149.90/año';
-          } else if (radio.value === '2') {
-            detallesMembresia.textContent = '2 Membresías Estudiante $269.82/año';
-          } else if (radio.value === '3') {
-            detallesMembresia.textContent = '3 Membresías Estudiante $359.76/año';
-          }
+          detallesMembresia.textContent = datos.detalles[parseInt(radio.value) - 1];
         });
       });
 
@@ -100,35 +103,29 @@ function openFormPayment() {
         }
 
         membresiaDetalle.classList.remove('hidden');
-        if (data.membresia === '1') {
-          detalleMembresiaSeleccionada.textContent = '1 Membresía Estudiante: $149.90/año';
-        } else if (data.membresia === '2') {
-          detalleMembresiaSeleccionada.textContent = '2 Membresías Estudiante: $269.82/año';
-        } else if (data.membresia === '3') {
-          detalleMembresiaSeleccionada.textContent = '3 Membresías Estudiante: $359.76/año';
-        }
+        const detalleSeleccionado = datos.detalles[parseInt(data.membresia) - 1];
+        detalleMembresiaSeleccionada.textContent = `${detalleSeleccionado}`;
 
         const mensaje = `Hola, mi nombre es ${data.nombre} ${data.apellido}.
-        Quiero comprar ${detalleMembresiaSeleccionada.textContent}.
+        Quiero comprar ${detalleSeleccionado}.
         Soy de ${data.pais}, mi correo es ${data.correo}, me especializo en ${data.especializacion}.`;
 
         const telefonoDestino = '51919543397';
         const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
 
-        await fetch('/api/guardar-formulario/', {
+        await fetch(datos.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
 
-        formSubmitted = true; // ✅ El usuario envió el formulario
+        formSubmitted = true;
         Swal.close();
       });
     },
 
     didClose: () => {
-      // ✅ Mostrar popup de retención solo si el formulario no fue enviado
       if (!formSubmitted && typeof window.openFormFree2 === 'function') {
         window.openFormFree2();
       }

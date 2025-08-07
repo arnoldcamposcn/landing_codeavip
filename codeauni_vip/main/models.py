@@ -78,6 +78,20 @@ class membresia_estudiantes(models.Model):
         return f"{self.nombre} {self.apellido} - {self.membresia} membresía(s)"
     
 
+
+class membresia_profesionales(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=20)
+    correo = models.EmailField()
+    pais = models.CharField(max_length=100)
+    especializacion = models.CharField(max_length=50)
+    membresia = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - {self.membresia} membresía(s)"
+    
+
 class prueba_gratuita_estudiantes(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
@@ -88,5 +102,31 @@ class prueba_gratuita_estudiantes(models.Model):
     
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
+    
+
+
+class membresia_bussines(models.Model):
+    nombre_empresa = models.CharField(max_length=150)
+    nombre_encargado = models.CharField(max_length=100) 
+    sitio_web = models.URLField(max_length=200, blank=True, null=True)
+    telefono = models.CharField(max_length=20)
+    correo = models.EmailField()
+    pais = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nombre_empresa} - {self.nombre_encargado}"
+    
+
+class membresia_free_bussines(models.Model):
+    nombre_empresa = models.CharField(max_length=150)
+    nombre_encargado = models.CharField(max_length=100) 
+    sitio_web = models.URLField(max_length=200, blank=True, null=True)
+    telefono = models.CharField(max_length=20)
+    correo = models.EmailField()
+    pais = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nombre_empresa} - {self.nombre_encargado}"
+
 
 

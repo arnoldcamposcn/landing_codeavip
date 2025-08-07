@@ -33,7 +33,7 @@
 
         <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
           <div>
-            <button class="text-white font-semibold px-8 md:px-12 lg:px-16 py-4 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
+             <button onclick="openFormFree()" class="text-white font-semibold px-8 md:px-12 lg:px-16 py-4 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
               Prueba gratis 7 días
             </button>
           </div>
@@ -532,11 +532,11 @@
            <!-- Botones -->
            <div class="flex flex-col gap-4 justify-center items-center">
            <div class="w-64 flex flex-col gap-4 justify-center items-center">
-              <button  class=" text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
+                <button onclick="openFormPayment()" class="text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
                  Comprar
                </button>
             
-                <button class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
+                <button onclick="openFormFree()" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
                  Prueba gratuita
                </button>
            </div>
@@ -666,7 +666,7 @@
            <!-- Botones -->
            <div class="flex flex-col gap-4 justify-center items-center">
           <div class="w-64 flex flex-col gap-4 justify-center items-center">
-              <button onclick="openFormPayment()"  class="text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
+              <button onclick="openFormPayment('profesional')"  class="text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
                  Comprar
                </button>
             
