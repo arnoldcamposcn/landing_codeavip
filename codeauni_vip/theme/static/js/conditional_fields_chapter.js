@@ -1,4 +1,4 @@
-console.log("🚀 Script condicional cargado en admin");
+console.log(" Script condicional cargado en admin");
 
 document.addEventListener('DOMContentLoaded', function () {
     const tipoEntrega = document.getElementById('id_tipo_entrega');
@@ -22,6 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (tipoEntrega) {
         tipoEntrega.addEventListener('change', toggleCampos);
-        toggleCampos();  // Ejecutar al cargar
+        toggleCampos(); 
     }
 });

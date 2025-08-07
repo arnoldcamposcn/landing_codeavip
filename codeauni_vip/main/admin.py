@@ -17,7 +17,6 @@ class HistoriaVideoAdmin(admin.ModelAdmin):
 
 
 
-
 @admin.register(DocenteBusiness)
 class DocenteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'profesion', 'linkedin', 'foto')

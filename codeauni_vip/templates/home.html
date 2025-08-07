@@ -532,7 +532,7 @@
            <!-- Botones -->
            <div class="flex flex-col gap-4 justify-center items-center">
            <div class="w-64 flex flex-col gap-4 justify-center items-center">
-              <button class=" text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
+              <button  class=" text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
                  Comprar
                </button>
             
@@ -647,30 +647,30 @@
             
            </ul>
 
-  <!-- Métodos de pago -->
+       <!-- Métodos de pago -->
        <div class="flex justify-center items-center gap-1 py-6">
-  <!-- Columna 1 -->
-  <div class="flex flex-col items-center flex-1">
-    <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
-    <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
+       <!-- Columna 1 -->
+      <div class="flex flex-col items-center flex-1">
+        <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
+        <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
 
-  </div>
+      </div>
 
-  <!-- Columna 2 -->
-  <div class="flex flex-col items-center gap-2 flex-1">
-    <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
-    <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
-  </div>
-</div>
+        <!-- Columna 2 -->
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
+          <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
+        </div>
+      </div>
 
            <!-- Botones -->
            <div class="flex flex-col gap-4 justify-center items-center">
           <div class="w-64 flex flex-col gap-4 justify-center items-center">
-              <button onclick="openForm()"  class="text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
+              <button onclick="openFormPayment()"  class="text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));" onmouseover="this.style.background='linear-gradient(180deg, #7A5F00 0%, #B88A00 51.92%, #E6B800 100%)'" onmouseout="this.style.background='var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%))'">
                  Comprar
                </button>
             
-                <button class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
+                <button onclick="openFormFree()" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
                  Prueba gratuita
                </button>
            </div>
@@ -776,23 +776,20 @@
     {% include 'components/faqOndemand.html' %}
     </div>
     </div>
-
- 
     </div>
 
 
 
        <div class="pt-10">
-    
     <div class="mx-auto max-w-screen-xl px-8">
-<div class="mt-10 mb-10 flex justify-center items-center bg-[#032744] py-3 px-6 rounded-lg w-[400px] max-w-full mx-auto">
-  <span class="text-white font-semibold text-lg">CONTENIDO ONLINE EN VIVO</span>
-  <div class="ml-4 flex items-center justify-center w-8 h-8 bg-transparent border-2 border-blue-500 rounded-full">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" class="text-blue-500">
-      <path d="M6.5 4.5L9.5 7.5L6.5 10.5V4.5ZM9.5 3.5L12.5 6.5L9.5 9.5V3.5ZM3 8.5C3 4.71 5.71 2 9 2C12.29 2 15 4.71 15 8.5C15 12.29 12.29 15 9 15C5.71 15 3 12.29 3 8.5Z" fill="currentColor"></path>
-    </svg>
-  </div>
-</div>
+    <div class="mt-10 mb-10 flex justify-center items-center bg-[#032744] py-3 px-6 rounded-lg w-[400px] max-w-full mx-auto">
+      <span class="text-white font-semibold text-lg">CONTENIDO ONLINE EN VIVO</span>
+      <div class="ml-4 flex items-center justify-center w-8 h-8 bg-transparent border-2 border-blue-500 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" class="text-blue-500">
+          <path d="M6.5 4.5L9.5 7.5L6.5 10.5V4.5ZM9.5 3.5L12.5 6.5L9.5 9.5V3.5ZM3 8.5C3 4.71 5.71 2 9 2C12.29 2 15 4.71 15 8.5C15 12.29 12.29 15 9 15C5.71 15 3 12.29 3 8.5Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         

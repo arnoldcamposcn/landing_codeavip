@@ -20,14 +20,16 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path
-from main.views import home, ponents, business, guardar_formulario
+from main.views import home, ponents, business, guardar_formulario, guardar_formulario_free, syllabus
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('ponentes/', ponents, name='ponents'),
     path('business/', business, name='business'),
+    path('temario/', syllabus, name='syllabus'),
     path('api/guardar-formulario/', guardar_formulario, name='guardar_formulario'),
+    path('api/guardar_formulario_free/', guardar_formulario_free, name='guardar_formulario_free'),
 
 ]
 

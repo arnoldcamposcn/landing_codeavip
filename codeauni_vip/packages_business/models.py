@@ -10,7 +10,7 @@ class TemaBusiness(models.Model):
         return self.titulo
 
 
-class CapituloBusiness(models.Model):
+class CursoBusiness(models.Model):
     ENTREGA_CHOICES = [
         ('', 'Seleccionar'),
         ('ondemand', 'On Demand'),
@@ -34,7 +34,7 @@ class CapituloBusiness(models.Model):
     ]
 
     titulo = models.CharField(max_length=200)
-    tema = models.ForeignKey(TemaBusiness, on_delete=models.CASCADE, related_name='capitulos_business')
+    tema = models.ForeignKey(TemaBusiness, on_delete=models.CASCADE, related_name='cursos_business')
     
     tipo_entrega = models.CharField(
         max_length=20,

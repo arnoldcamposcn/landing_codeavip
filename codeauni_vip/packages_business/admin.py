@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TemaBusiness, CapituloBusiness
+from .models import TemaBusiness, CursoBusiness
 
 
 class TemaBusinessAdmin(admin.ModelAdmin):
@@ -7,7 +7,7 @@ class TemaBusinessAdmin(admin.ModelAdmin):
     search_fields = ('titulo',)
 
 
-class CapituloBusinessAdmin(admin.ModelAdmin):
+class CursoBusinessAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'tema', 'tipo_entrega', 'tipo_contenido')
     search_fields = ('titulo',)
     list_filter = ('tema', 'tipo_entrega', 'tipo_contenido')
@@ -17,4 +17,4 @@ class CapituloBusinessAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TemaBusiness, TemaBusinessAdmin)
-admin.site.register(CapituloBusiness, CapituloBusinessAdmin)
+admin.site.register(CursoBusiness, CursoBusinessAdmin)
