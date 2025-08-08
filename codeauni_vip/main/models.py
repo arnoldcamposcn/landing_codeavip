@@ -92,7 +92,7 @@ class membresia_profesionales(models.Model):
         return f"{self.nombre} {self.apellido} - {self.membresia} membresía(s)"
     
 
-class prueba_gratuita_estudiantes(models.Model):
+class prueba_gratuita_vip(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import Docente, HistoriaVideo, Estudiantes, DocenteBusiness, EstudiantesBusiness,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_estudiantes, membresia_profesionales, membresia_bussines, membresia_free_bussines
-from packages_business.models import TemaBusiness, CursoBusiness,CursoBusiness  
+from .models import Docente, HistoriaVideo, Estudiantes, DocenteBusiness, EstudiantesBusiness,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines
+from packages_business.models import TemaBusiness, CursoBusiness,CursoBusiness
 from packages.models import Tema, Curso, Temario
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -29,6 +29,30 @@ def home(request):
         'capitulos_envivo': capitulos_envivo,
         'cursos': cursos,
     })
+
+
+def business(request):
+    docentes = DocenteBusiness.objects.all()
+    videos = HistoriaVideoBusiness.objects.exclude(reel__isnull=True).exclude(reel__exact='')
+    estudiantes = EstudiantesBusiness.objects.all()
+    cursos = CursoBusiness.objects.all()
+
+    temas = TemaBusiness.objects.all()
+
+    capitulos_ondemand = CursoBusiness.objects.filter(tipo_entrega='ondemand')
+    capitulos_envivo = CursoBusiness.objects.filter(tipo_entrega='envivo')
+
+    return render(request, 'pages/business.html', {
+        'docentes': docentes,
+        'videos': videos,
+        'estudiantes': estudiantes,
+        'temas': temas,
+        'capitulos_ondemand': capitulos_ondemand,
+        'capitulos_envivo': capitulos_envivo,
+        'cursos': cursos,
+    })
+
+
 
 
 def ponents(request):
@@ -59,24 +83,6 @@ def syllabus(request, curso_id):
     })
 
 
-def business(request):
-    docentes = DocenteBusiness.objects.all()
-    videos = HistoriaVideoBusiness.objects.exclude(reel__isnull=True).exclude(reel__exact='')
-    estudiantes = EstudiantesBusiness.objects.all()
-
-    temas = TemaBusiness.objects.all()
-
-    capitulos_ondemand = CursoBusiness.objects.filter(tipo_entrega='ondemand')
-    capitulos_envivo = CursoBusiness.objects.filter(tipo_entrega='envivo')
-
-    return render(request, 'pages/business.html', {
-        'docentes': docentes,
-        'videos': videos,
-        'estudiantes': estudiantes,
-        'temas': temas,
-        'capitulos_ondemand': capitulos_ondemand,
-        'capitulos_envivo': capitulos_envivo,
-    })
 
 
 
@@ -156,7 +162,7 @@ def guardar_formulario_free(request):
         try:
             data = json.loads(request.body)
 
-            nuevo_registro = prueba_gratuita_estudiantes.objects.create(
+            nuevo_registro = prueba_gratuita_vip.objects.create(
                 nombre=data.get('nombre'),
                 apellido=data.get('apellido'),
                 telefono=data.get('telefono'),
