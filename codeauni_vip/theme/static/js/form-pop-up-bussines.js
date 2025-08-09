@@ -45,9 +45,9 @@ window.openFormBussines = function(selectedPlan) {
           <input name="correo" placeholder="Correo electrónico" class="border rounded-md px-3 py-2 w-full" required />
           <input name="pais" placeholder="País" class="border rounded-md px-3 py-2 w-full" required />
 
-          <button type="submit" class="w-full bg-[#0068FF] text-white py-2 rounded-md font-semibold mt-4 hover:bg-[#0053cc]">
-            Contactar asesor
-          </button>
+           <button type="submit" class="btn-gradient text-white font-semibold px-6 md:px-6 lg:px-6 py-3 text-base cursor-pointer mx-auto block">
+          Contactar asesor
+        </button>
         </form>
       `,
       didOpen: () => {
@@ -68,13 +68,17 @@ window.openFormBussines = function(selectedPlan) {
             plan3: '+100 usuarios • $150 USD x persona • 30% OFF',
           }[selectedPlan];
 
-          const mensaje = `Hola, represento a la empresa ${data.nombre_empresa}.
-Encargado: ${data.nombre_encargado}
-Sitio web: ${data.sitio_web}
-Teléfono: ${data.telefono}
-Correo: ${data.correo}
-País: ${data.pais}
-Plan seleccionado: ${planResumen}`;
+          const mensaje = `Estimados,  
+          Mi nombre es ${data.nombre_encargado}, representante de la empresa ${data.nombre_empresa}.  
+          Me comunico para manifestar nuestro interés en adquirir el plan ${planResumen} CODEA BUSSINES.  
+          
+          📍 País: ${data.pais}  
+          📞 Teléfono: ${data.telefono}  
+          📧 Correo: ${data.correo}  
+          🌐 Sitio web: ${data.sitio_web}  
+          
+          Quedo atento(a) a sus indicaciones para continuar con el proceso.  
+          Saludos.`;
 
           const telefonoDestino = '51919543397';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;

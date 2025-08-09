@@ -31,17 +31,25 @@ function openFormPayment(tipo = 'estudiante') {
     showConfirmButton: false,
     allowOutsideClick: true,
     html: `
-      <form id="vip-form" class="text-left text-sm text-black space-y-4 font-sans">
+      <form id="vip-form" x-data="{ selectedPlan: '1' }" class="text-left text-sm text-black space-y-4 font-sans">
 
         <h2 class="text-center text-lg font-semibold">Selecciona tu membresía (${datos.label})</h2>
 
         <div class="space-y-3">
           ${datos.detalles.map((detalle, index) => `
-            <label class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300 transition-all border-[#00D2FF]">
+            <label
+              class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center transition-all border-[#00D2FF]
+                     peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300"
+              :class="selectedPlan === '${index + 1}' ? 'bg-gradient-to-r from-[#0068FF] to-[#00D2FF] text-white ring-2 ring-[#7fd9ff]/60' : ''"
+              @click="selectedPlan='${index + 1}'"
+            >
               <input type="radio" name="membresia" value="${index + 1}" class="hidden peer" ${index === 0 ? 'required' : ''}>
-              <span class="text-[32px] font-bold leading-none text-black">${index + 1} Membresía</span>
-              <span class="text-[16px] text-gray-600 font-medium">CODEa VIP</span>
-              ${index > 0 ? `<span class="absolute top-2 right-3 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-md">${index * 10}%Off</span>` : ''}
+              <span class="text-[32px] font-bold leading-none">${index + 1} Membresía</span>
+              <span class="text-[16px] font-medium" :class="selectedPlan === '${index + 1}' ? 'text-white/90' : 'text-gray-600'">CODEa VIP</span>
+              ${index > 0 ? `
+                <span class="absolute bottom-2 right-2 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-xl border border-black/20">
+                  ${index * 10}%Off
+                </span>` : ''}
             </label>
           `).join('')}
         </div>
@@ -71,49 +79,50 @@ function openFormPayment(tipo = 'estudiante') {
           <option value="Afines">Afines</option>
         </select>
 
-        <button type="submit" class="w-full bg-[#0068FF] text-white py-2 rounded-md font-semibold mt-4 hover:bg-[#0053cc]">
-          Contactar asesor
-        </button>
+        <div class="flex justify-center">
+          <button type="submit" class="btn-gradient text-white font-semibold px-6 md:px-6 lg:px-6 py-3 text-base cursor-pointer mx-auto block">
+            Contactar asesor
+          </button>
+        </div>
       </form>
-
-      <div id="membresia-detalle" class="mt-4 text-center hidden">
-        <p id="detalle-membresia-seleccionada" class="font-semibold"></p>
-      </div>
     `,
 
     didOpen: () => {
       const form = document.getElementById('vip-form');
       const detallesMembresia = document.getElementById('detalles-membresia');
-      const detalleMembresiaSeleccionada = document.getElementById('detalle-membresia-seleccionada');
-      const membresiaDetalle = document.getElementById('membresia-detalle');
 
       form.querySelectorAll('input[name="membresia"]').forEach(radio => {
         radio.addEventListener('change', () => {
-          detallesMembresia.textContent = datos.detalles[parseInt(radio.value) - 1];
+          detallesMembresia.textContent = datos.detalles[parseInt(radio.value, 10) - 1];
         });
       });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const data = Object.fromEntries(new FormData(form).entries());
 
+        const data = Object.fromEntries(new FormData(form).entries());
         if (Object.values(data).some(value => !value)) {
           Swal.showValidationMessage('Por favor completa todos los campos');
           return;
         }
 
-        membresiaDetalle.classList.remove('hidden');
-        const detalleSeleccionado = datos.detalles[parseInt(data.membresia) - 1];
-        detalleMembresiaSeleccionada.textContent = `${detalleSeleccionado}`;
+        const detalleSeleccionado = datos.detalles[parseInt(data.membresia, 10) - 1];
 
-        const mensaje = `Hola, mi nombre es ${data.nombre} ${data.apellido}.
-        Quiero comprar ${detalleSeleccionado}.
-        Soy de ${data.pais}, mi correo es ${data.correo}, me especializo en ${data.especializacion}.`;
+        const mensaje = `Estimados,  
+        Mi nombre es ${data.nombre} ${data.apellido} y me especializo en ${data.especializacion}.  
+        Me comunico para manifestar mi interés en **adquirir ${detalleSeleccionado} de CODEA VIP**.  
+
+        📍 País: ${data.pais}  
+        📧 Correo: ${data.correo}  
+
+        Quedo atento(a) a su confirmación y a los pasos para completar la compra.  
+        Saludos.`;
 
         const telefonoDestino = '51919543397';
         const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
 
+     
         await fetch(datos.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

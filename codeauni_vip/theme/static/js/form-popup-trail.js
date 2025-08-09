@@ -30,9 +30,9 @@ function openFormFree() {
             <option value="Afines">Afines</option>
           </select>
   
-          <button type="submit" class="w-full bg-[#0068FF] text-white py-2 rounded-md font-semibold mt-4 hover:bg-[#0053cc]">
-            Contactar asesor
-          </button>
+          <button type="submit" class="btn-gradient text-white font-semibold px-6 md:px-6 lg:px-6 py-3 text-base cursor-pointer mx-auto block">
+          Contactar asesor
+        </button>
         </form>
   
         <div id="membresia-detalle" class="mt-4 text-center hidden">
@@ -53,10 +53,14 @@ function openFormFree() {
           }
   
           // Construir el mensaje de WhatsApp con los detalles de la membresía
-          const mensaje = `Hola, mi nombre es ${data.nombre} ${data.apellido}.
-            Quiero comprar 
-            Soy de ${data.pais}, mi correo es ${data.correo}, me especializo en ${data.especializacion}.
-            `;
+          const mensaje = `Estimados,  
+            Mi nombre es ${data.nombre} ${data.apellido}, soy de ${data.pais} y me especializo en ${data.especializacion}.  
+            Me gustaría solicitar una **prueba gratuita de CODEA VIP**.  
+
+            📧 Correo: ${data.correo}  
+
+            Quedo atento(a) a su respuesta y a los pasos para acceder a la prueba.  
+            Saludos .`;
   
           const telefonoDestino = '51919543397';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;

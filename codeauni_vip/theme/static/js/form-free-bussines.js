@@ -21,9 +21,9 @@ function openFormBussinesFree() {
   
           <input name="pais" placeholder="País" class="border rounded-md px-3 py-2 w-full" required />
   
-          <button type="submit" class="w-full bg-[#0068FF] text-white py-2 rounded-md font-semibold mt-4 hover:bg-[#0053cc]">
-            Contactar asesor
-          </button>
+           <button type="submit" class="btn-gradient text-white font-semibold px-6 md:px-6 lg:px-6 py-3 text-base cursor-pointer mx-auto block">
+          Contactar asesor
+        </button>
         </form>
   
         <div id="membresia-detalle" class="mt-4 text-center hidden">
@@ -44,12 +44,17 @@ function openFormBussinesFree() {
           }
   
           // Construir el mensaje de WhatsApp para profesionales
-          const mensaje = `Hola, represento a la empresa ${data.nombre_empresa}.
-  Encargado: ${data.nombre_encargado}
-  Sitio web: ${data.sitio_web}
-  Teléfono: ${data.telefono}
-  Correo: ${data.correo}
-  País: ${data.pais}`;
+          const mensaje = `Estimados,  
+          Mi nombre es ${data.nombre_encargado}, representante de la empresa ${data.nombre_empresa}.  
+          Nos gustaría solicitar una **prueba gratuita de CODEA BUSINESS**.  
+
+          📞 Teléfono: ${data.telefono}  
+          📧 Correo: ${data.correo}  
+          📍 País: ${data.pais}  
+          🌐 Sitio web: ${data.sitio_web}  
+
+          Quedo atento(a) a su confirmación y a los pasos para acceder a la prueba.  
+          Saludos.`;
   
           const telefonoDestino = '51919543397';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
