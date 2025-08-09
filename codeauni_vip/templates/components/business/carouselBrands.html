@@ -1,0 +1,49 @@
+{% load static %}
+
+<section class="overflow-hidden">
+  <div class="flex animate-scroll">
+    <!-- Bloque 1 -->
+    <div class="flex flex-nowrap gap-4">
+      {% for marca in marcas %}
+      <div class="flex-shrink-0 w-72 px-4">
+        <div style="padding: 2px; border-radius: 12px;">
+          <div class="py-6 px-4 h-full flex items-center justify-center" style="border-radius: 9px;">
+            {% if marca.imagen %}
+              <img src="{{ marca.imagen.url }}" alt="Marca {{ marca.id }}" class="block max-h-16 w-auto object-contain">
+            {% else %}
+              <img src="{% static 'students.jpg' %}" alt="Sin imagen" class="block max-h-16 w-auto object-contain">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Bloque 2 (duplicado para scroll infinito) -->
+    <div class="flex flex-nowrap gap-4" aria-hidden="true">
+      {% for marca in marcas %}
+      <div class="flex-shrink-0 w-72 px-4">
+        <div style="padding: 2px; border-radius: 12px;">
+          <div class="py-6 px-4 h-full flex items-center justify-center" style="border-radius: 9px;">
+            {% if marca.imagen %}
+              <img src="{{ marca.imagen.url }}" alt="" class="block max-h-16 w-auto object-contain">
+            {% else %}
+              <img src="{% static 'students.jpg' %}" alt="" class="block max-h-16 w-auto object-contain">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scroll {
+  animation: scroll 25.5s linear infinite;
+}
+</style>

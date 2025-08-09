@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Docente, HistoriaVideo, Estudiantes, DocenteBusiness, EstudiantesBusiness,HistoriaVideoBusiness 
+from .models import Docente, HistoriaVideo, Estudiantes, DocenteBusiness, EstudiantesBusiness,HistoriaVideoBusiness, marcas_bussines
 
 @admin.register(Docente)
 class DocenteAdmin(admin.ModelAdmin):
@@ -30,3 +30,7 @@ class HistoriaVideoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'video', 'reel')
     search_fields = ('nombre',)
 
+
+@admin.register(marcas_bussines)
+class marcas_bussinesAdmin(admin.ModelAdmin):
+    list_display = ('imagen',)  

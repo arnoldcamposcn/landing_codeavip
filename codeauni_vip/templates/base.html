@@ -23,6 +23,16 @@
     </head>
     <body>
 
+  <style>
+  .bg-business-gradient {
+    background: linear-gradient(109deg, #000 6.53%, #000057 164.78%);
+  }
+
+  .bg-hero {
+  background: linear-gradient(288deg, #032744 49.55%, #0862AA 162.06%);
+}
+
+  </style>
     {% block content %}
 
     {% endblock %}
@@ -38,6 +48,7 @@ aria-label="Chatear por WhatsApp">
 </a>
 
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{% static 'js/form-popup.js' %}"></script>
   <script src="{% static 'js/form-popup-trail.js' %}"></script>

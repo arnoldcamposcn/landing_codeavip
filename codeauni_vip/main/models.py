@@ -106,15 +106,27 @@ class prueba_gratuita_vip(models.Model):
 
 
 class membresia_bussines(models.Model):
+    PLANES_MEMBRESIA = (
+        (1, 'Membresía 2-10'),
+        (2, 'Membresía 11-100'),
+        (3, 'Membresía +100'),
+    )
+
     nombre_empresa = models.CharField(max_length=150)
-    nombre_encargado = models.CharField(max_length=100) 
+    nombre_encargado = models.CharField(max_length=100)
     sitio_web = models.URLField(max_length=200, blank=True, null=True)
     telefono = models.CharField(max_length=20)
     correo = models.EmailField()
     pais = models.CharField(max_length=100)
+    membresia = models.IntegerField(choices=PLANES_MEMBRESIA, default=1)
+
+    class Meta:
+        verbose_name = "Membresía Business"
+        verbose_name_plural = "Membresías Business"
+        ordering = ['nombre_empresa']
 
     def __str__(self):
-        return f"{self.nombre_empresa} - {self.nombre_encargado}"
+        return f"{self.nombre_empresa} - {self.get_membresia_display()}"
     
 
 class membresia_free_bussines(models.Model):
@@ -130,3 +142,8 @@ class membresia_free_bussines(models.Model):
 
 
 
+class marcas_bussines(models.Model):
+    imagen = models.ImageField(upload_to='marcas/')
+
+    def __str__(self):
+        return f"Marca {self.id}"

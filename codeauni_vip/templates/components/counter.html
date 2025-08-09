@@ -1,0 +1,103 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+  <!-- Card 1 -->
+  <div class="p-[1px] rounded-xl bg-gradient-to-r from-[#0068FF] to-[#00D2FF]">
+    <div class="p-6 sm:p-8 lg:p-10 rounded-[11px] flex items-center justify-center bg-[#043C69]">
+      <div class="text-center text-white">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+          <span x-data="countUp(850, {prefix: '+'})" x-init="start()" x-text="display"></span>
+        </div>
+        <div class="text-sm sm:text-base">De contenido</div>
+        <div class="text-sm sm:text-base">.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="p-[1px] rounded-xl bg-gradient-to-r from-[#0068FF] to-[#00D2FF]">
+    <div class="p-6 sm:p-8 lg:p-10 rounded-[11px] flex items-center justify-center bg-[#043C69]">
+      <div class="text-center text-white">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+          <span x-data="countUp(70, {prefix: '+'})" x-init="start()" x-text="display"></span>
+        </div>
+        <div class="text-sm sm:text-base">cursos, workshops</div>
+        <div class="text-sm sm:text-base">y masterclass</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="p-[1px] rounded-xl bg-gradient-to-r from-[#0068FF] to-[#00D2FF]">
+    <div class="p-6 sm:p-8 lg:p-10 rounded-[11px] flex items-center justify-center bg-[#043C69]">
+      <div class="text-center text-white">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+          <span x-data="countUp(16500, {prefix: '+'})" x-init="start()" x-text="display"></span>
+        </div>
+        <div class="text-sm sm:text-base">profesionales</div>
+        <div class="text-sm sm:text-base">capacitados</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="p-[1px] rounded-xl bg-gradient-to-r from-[#0068FF] to-[#00D2FF]">
+    <div class="p-6 sm:p-8 lg:p-10 rounded-[11px] flex items-center justify-center bg-[#043C69]">
+      <div class="text-center text-white">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+          <span x-data="countUp(15, {prefix: '+'})" x-init="start()" x-text="display"></span>
+        </div>
+        <div class="text-sm sm:text-base">empresas líderes</div>
+        <div class="text-sm sm:text-base">confían en nosotros</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Cargar Alpine.js -->
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('countUp', (end, opts = {}) => ({
+    startVal: 0,
+    endVal: Number(end) || 0,
+    duration: opts.duration ?? 1200,       // duración en ms
+    prefix: opts.prefix ?? '',
+    suffix: opts.suffix ?? '',
+    locale: opts.locale ?? 'es-PE',
+    started: false,
+    display: '0',
+
+    start() {
+      const el = this.$el;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.started) {
+            this.started = true;
+            this.animate();
+            io.unobserve(el);
+          }
+        });
+      }, { threshold: 0.4 }); // empieza cuando el 40% del elemento es visible
+      io.observe(el);
+    },
+
+    animate() {
+      const t0 = performance.now();
+      const from = this.startVal;
+      const to = this.endVal;
+      const dur = this.duration;
+
+      const step = (now) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        const val = Math.floor(from + (to - from) * eased);
+        this.display = `${this.prefix}${new Intl.NumberFormat(this.locale).format(val)}${this.suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+  }))
+});
+</script>

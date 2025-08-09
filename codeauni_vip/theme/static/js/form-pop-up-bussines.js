@@ -1,4 +1,10 @@
-function openFormBussines() {
+window.openFormBussines = function(selectedPlan) {
+  if (!selectedPlan) {
+      // Seguridad por si llaman sin seleccionar
+      Swal.fire({ icon: 'warning', text: 'Selecciona un plan antes de continuar.' });
+      return;
+    }
+
     Swal.fire({
       title: ' ',
       width: '28rem',
@@ -6,65 +12,83 @@ function openFormBussines() {
       showConfirmButton: false,
       html: `
         <form id="bussines-form" class="text-left text-sm text-black space-y-4 font-sans">
-  
           <h2 class="text-center text-lg font-semibold">¡Completa tus datos para solicitar tu compra!</h2>
-  
+
+          <!-- Detalle de planes -->
+          <div id="detalle-planes" class="mt-4">
+            <div class="plan-box" data-plan="plan1" style="display:none">
+              <!-- Caja 1 -->
+              <p>Detalle:</p>
+              <!-- ... tu HTML de la caja 1 tal cual ... -->
+              <p class="mt-2 font-medium">Plan seleccionado: 2-10 • $200 USD x persona • 20% OFF</p>
+            </div>
+
+            <div class="plan-box" data-plan="plan2" style="display:none">
+              <!-- Caja 2 -->
+              <p>Detalle:</p>
+              <!-- ... tu HTML de la caja 2 tal cual ... -->
+              <p class="mt-2 font-medium">Plan seleccionado: 11-100 • $170 USD x persona • 25% OFF</p>
+            </div>
+
+            <div class="plan-box" data-plan="plan3" style="display:none">
+              <!-- Caja 3 -->
+              <p>Detalle:</p>
+              <!-- ... tu HTML de la caja 3 tal cual ... -->
+              <p class="mt-2 font-medium">Plan seleccionado: +100 • $150 USD x persona • 30% OFF</p>
+            </div>
+          </div>
+
           <input name="nombre_empresa" placeholder="Nombre de la empresa" class="border rounded-md px-3 py-2 w-full" required />
-  
           <input name="nombre_encargado" placeholder="Nombre del encargado" class="border rounded-md px-3 py-2 w-full" required />
-  
           <input name="sitio_web" placeholder="Sitio web" class="border rounded-md px-3 py-2 w-full" required />
-  
           <input name="telefono" placeholder="Teléfono" class="border rounded-md px-3 py-2 w-full" required />
-  
           <input name="correo" placeholder="Correo electrónico" class="border rounded-md px-3 py-2 w-full" required />
-  
           <input name="pais" placeholder="País" class="border rounded-md px-3 py-2 w-full" required />
-  
+
           <button type="submit" class="w-full bg-[#0068FF] text-white py-2 rounded-md font-semibold mt-4 hover:bg-[#0053cc]">
             Contactar asesor
           </button>
         </form>
-  
-        <div id="membresia-detalle" class="mt-4 text-center hidden">
-          <p id="detalle-membresia-seleccionada" class="font-semibold"></p>
-        </div>
       `,
-  
       didOpen: () => {
+        // Mostrar solo la caja del plan elegido
+        document.querySelectorAll('.plan-box').forEach(box => {
+          box.style.display = (box.dataset.plan === selectedPlan) ? 'block' : 'none';
+        });
+
         const form = document.getElementById('bussines-form');
-  
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const data = Object.fromEntries(new FormData(form).entries());
-  
-          if (Object.values(data).some(value => !value)) {
-            Swal.showValidationMessage('Por favor completa todos los campos');
-            return;
-          }
-  
-          // Construir el mensaje de WhatsApp para profesionales
+
+          // Resumen del plan según selectedPlan
+          const planResumen = {
+            plan1: '2-10 usuarios • $200 USD x persona • 20% OFF',
+            plan2: '11-100 usuarios • $170 USD x persona • 25% OFF',
+            plan3: '+100 usuarios • $150 USD x persona • 30% OFF',
+          }[selectedPlan];
+
           const mensaje = `Hola, represento a la empresa ${data.nombre_empresa}.
-  Encargado: ${data.nombre_encargado}
-  Sitio web: ${data.sitio_web}
-  Teléfono: ${data.telefono}
-  Correo: ${data.correo}
-  País: ${data.pais}`;
-  
+Encargado: ${data.nombre_encargado}
+Sitio web: ${data.sitio_web}
+Teléfono: ${data.telefono}
+Correo: ${data.correo}
+País: ${data.pais}
+Plan seleccionado: ${planResumen}`;
+
           const telefonoDestino = '51919543397';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
           window.open(url, '_blank');
-  
+
+          // Enviar también al backend
           await fetch('/api/guardar_formulario_bussines/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, plan: selectedPlan })
           });
-  
+
           Swal.close();
         });
-        window.openFormBussines = openFormBussines;
       }
     });
   }
-  

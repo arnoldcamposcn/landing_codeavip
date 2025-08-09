@@ -11,7 +11,8 @@
           },
         }"
         x-init="window.addEventListener('scroll', () => updateScroll())"
-        :class="scrollY > 50 ? 'bg-white shadow-md py-3' : 'bg-transparent'">
+        :class="scrollY > 50 ? 'bg-white shadow-md py-3' : 'bg-[#032744]'">
+        
   <div class="mx-auto max-w-screen-xl">
     <div class="relative flex h-16 items-center justify-between">
 
@@ -35,7 +36,7 @@
       <!-- Logo centro -->
       <div class="hidden lg:block absolute left-1/2 -translate-x-1/2">
         <a class="block text-teal-600 dark:text-teal-600" href="">
-          <img :src="scrollY > 50 ? '{% static 'business/codea-bunisess.svg' %}' : '{% static 'business/codea-bunisess.svg' %}'" 
+          <img :src="scrollY > 50 ? '{% static 'business/codeabussines_black.svg' %}' : '{% static 'business/codea-bunisess.svg' %}'" 
                alt="CODEa VIP Logo" class="w-full h-8" />
         </a>
       </div>
@@ -61,7 +62,7 @@
       <div class="lg:hidden flex items-center justify-between w-full">
         <div class="flex items-center">
           <a href="/">
-            <img :src="scrollY > 50 ? '{% static 'business/codea-bunisess.svg' %}' : '{% static 'business/codea-bunisess.svg' %}'" 
+            <img :src="scrollY > 50 ? '{% static 'business/codeabussines_black.svg' %}' : '{% static 'business/codea-bunisess.svg' %}'" 
                  alt="CODEa VIP Logo" class="w-full h-6" />
           </a>
         </div>

@@ -5,7 +5,7 @@
         <div class="text-center mb-12">
          
          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black">
-            Testimonios de Exito<br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">ESTUDIANTES</span>
+            Lo que dicen nuestros<br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CLIENTES</span>
           </h2>
         <div class="bar"></div>
         </div>
@@ -16,7 +16,9 @@
               {% for estudiante in estudiantes %}
               <!-- Testimonio dinámico -->
               <div class="flex-shrink-0 w-96">
-                <div class=" text-white py-6 px-4 rounded-xl h-full flex flex-col items-center justify-center gap-4 bg-white border border-gray-200">
+              
+                  <div style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); padding: 3px; border-radius: 12px;">
+        <div class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]" style="border-radius: 9px;">
                   <div class="flex-shrink-0">
                     {% if estudiante.foto %}
                   <img src="{{ estudiante.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ estudiante.nombre }}">
@@ -28,9 +30,9 @@
                   <div class="flex flex-col items-center text-center">
                     <!-- Nombre y título -->
                     <div class="flex flex-col items-center justify-center">
-                      <p class="text-black italic mb-2">{{ estudiante.descripcion }}</p>
-                      <h4 class="font-bold text-base text-black">{{ estudiante.nombre }}</h4>
-                      <p class="text-black italic mb-2">{{ estudiante.profesion }}</p>
+                      <p class="text-white italic mb-2">{{ estudiante.descripcion }}</p>
+                      <h4 class="font-bold text-base text-white">{{ estudiante.nombre }}</h4>
+                      <p class="text-white italic mb-2">{{ estudiante.profesion }}</p>
                       <div
                             class="flex items-center mb-9 gap-2 transition-all duration-500 group-hover:scale-105">
                             <svg class="w-5 h-5" viewBox="0 0 18 17" fill="url(#gold-gradient-1)" xmlns="http://www.w3.org/2000/svg">
@@ -64,6 +66,7 @@
                     </div>
                   </div>
                 </div>
+                </div>
               </div>
               {% endfor %}
             </div>
@@ -73,7 +76,8 @@
               {% for estudiante in estudiantes %}
               <!-- Testimonio dinámico duplicado -->
               <div class="flex-shrink-0 w-96">
-                <div class=" text-white py-6 px-4 rounded-xl h-full flex flex-col items-center justify-center gap-4 bg-white border border-gray-200">
+         <div style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); padding: 3px; border-radius: 12px;">
+        <div class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]" style="border-radius: 9px;">
                   <div class="flex-shrink-0">
                    {% if estudiante.foto %}
                     <img src="{{ estudiante.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ estudiante.nombre }}">
@@ -85,9 +89,9 @@
                   <div class="flex flex-col items-center text-center">
                     <!-- Nombre y título -->
                     <div>
-                      <p class="text-black italic mb-2">{{ estudiante.descripcion }}</p>
-                      <h4 class="font-bold text-base text-black">{{ estudiante.nombre }}</h4>
-                      <p class="text-black italic mb-2">{{ estudiante.profesion }}</p>
+                      <p class="text-white italic mb-2">{{ estudiante.descripcion }}</p>
+                      <h4 class="font-bold text-base text-white">{{ estudiante.nombre }}</h4>
+                      <p class="text-white italic mb-2">{{ estudiante.profesion }}</p>
 
                         <div
                             class="flex items-center justify-center mb-9 gap-2 transition-all duration-500 group-hover:scale-105">
@@ -122,6 +126,7 @@
 
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
               {% endfor %}

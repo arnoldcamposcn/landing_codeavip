@@ -1,0 +1,771 @@
+
+{% extends 'base.html' %}
+{% block title %} | Business{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    {% include 'components/business/header.html' %}
+
+
+
+<div class="min-h-[100svh] relative overflow-hidden bg-hero">
+
+  <div class="w-full max-w-7xl mx-auto px-4 xl:px-0 py-8 sm:py-12 lg:py-0 lg:flex lg:items-center lg:justify-center lg:min-h-[calc(100svh-100px)]">
+    
+    <!-- Caja única hero + cards -->
+    <div class="w-full space-y-8 pt-44">
+      <!-- HERO -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Imagen -->
+        <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+          <img src="{% static 'mockup-codeauni.png' %}" alt="Plataforma CODEa UNI"
+               class="w-full max-w-md sm:max-w-lg lg:max-w-3xl xl:max-w-4xl object-contain drop-shadow-lg" />
+        </div>
+
+        <!-- Texto -->
+        <div class="order-2 lg:order-1 text-white">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-4 leading-tight">
+            POTENCIA TU EQUIPO
+            CON TECNOLOGÍA MINERA
+          </h1>
+          <p class="text-sm sm:text-base lg:text-xl mb-4 max-w-2xl">
+           Ofrecemos una solución completa para la capacitación de tu personal en tecnología y minería en una única plataforma.
+          </p>
+          <p class="italic text-sm sm:text-base lg:text-xl mb-6 text-[#00C4FF] max-w-2xl font-semibold">
+            ¡Asciende el talento de tus empleados y asegura el éxito!
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <button onclick="openFormBussinesFree()"
+               class="w-[200px] sm:w-auto text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg rounded-md
+         bg-gradient-to-r from-[#0068FF] to-[#00D2FF] hover:from-[#0056CC] hover:to-[#00B8E6]">
+              Prueba gratis 7 días
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </div> <!-- /Caja única -->
+  </div>
+</div>
+
+
+    <div class=" px-8 py-16">
+            {% include 'components/business/carouselBrands.html' %}
+    </div>
+
+
+
+
+
+
+<div class="pt-10 bg-business-gradient">
+    <div class="mx-auto max-w-screen-xl px-4 md:px-4 lg:px-8">
+
+    
+    <div class="mt-10 mb-5 flex justify-center items-center bg-gradient-to-r from-[#0a1a2e] to-[#1a2a3e] py-4 px-8 rounded-xl w-[500px] max-w-full mx-auto shadow-2xl border border-[#0068FF]/20">
+      <span class="text-white font-bold text-xl tracking-wide">CONTENIDO ON DEMAND</span>
+      <div class="ml-6 flex items-center justify-center w-10 h-10 bg-transparent border-2 border-[#0068FF] rounded-xl shadow-[0_0_15px_rgba(0,104,255,0.6)]">
+       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+  <g clip-path="url(#clip0_740_2477)">
+    <path d="M38 48H10C7.34881 47.9968 4.80712 46.9422 2.93244 45.0676C1.05776 43.1929 0.00317572 40.6512 0 38L0 10C0.00317572 7.34881 1.05776 4.80712 2.93244 2.93244C4.80712 1.05776 7.34881 0.00317572 10 0L38 0C40.6512 0.00317572 43.1929 1.05776 45.0676 2.93244C46.9422 4.80712 47.9968 7.34881 48 10V38C47.9968 40.6512 46.9422 43.1929 45.0676 45.0676C43.1929 46.9422 40.6512 47.9968 38 48ZM10 4C8.4087 4 6.88258 4.63214 5.75736 5.75736C4.63214 6.88258 4 8.4087 4 10V38C4 39.5913 4.63214 41.1174 5.75736 42.2426C6.88258 43.3679 8.4087 44 10 44H38C39.5913 44 41.1174 43.3679 42.2426 42.2426C43.3679 41.1174 44 39.5913 44 38V10C44 8.4087 43.3679 6.88258 42.2426 5.75736C41.1174 4.63214 39.5913 4 38 4H10ZM18.684 34.01C17.8503 34.0072 17.032 33.7844 16.312 33.364C15.6007 32.9569 15.0103 32.3681 14.6013 31.6579C14.1922 30.9477 13.9792 30.1416 13.984 29.322V18.678C13.9833 17.8583 14.1982 17.0528 14.6072 16.3424C15.0161 15.632 15.6047 15.0416 16.3138 14.6305C17.023 14.2194 17.8278 14.002 18.6475 14.0001C19.4672 13.9983 20.273 14.2121 20.984 14.62L31.54 19.89C32.2732 20.2858 32.8873 20.8706 33.3185 21.5836C33.7497 22.2966 33.9823 23.112 33.9923 23.9452C34.0023 24.7784 33.7893 25.5991 33.3753 26.3222C32.9614 27.0454 32.3615 27.6447 31.638 28.058L20.886 33.432C20.2154 33.8145 19.456 34.0138 18.684 34.01ZM18.634 18.01C18.5238 18.01 18.4155 18.0389 18.32 18.094C18.2163 18.1517 18.1302 18.2365 18.071 18.3394C18.0118 18.4423 17.9817 18.5593 17.984 18.678V29.322C17.9847 29.4389 18.0158 29.5536 18.0742 29.6549C18.1326 29.7562 18.2164 29.8405 18.3172 29.8996C18.4181 29.9587 18.5326 29.9906 18.6495 29.992C18.7664 29.9935 18.8817 29.9646 18.984 29.908L29.736 24.532C29.8161 24.4694 29.8798 24.3882 29.9216 24.2956C29.9634 24.2029 29.982 24.1015 29.976 24C29.9785 23.881 29.9483 23.7637 29.8887 23.6607C29.8291 23.5577 29.7424 23.4731 29.638 23.416L19.09 18.146C18.9525 18.0616 18.7953 18.0147 18.634 18.01Z" fill="url(#paint0_linear_740_2477)"/>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear_740_2477" x1="0" y1="24" x2="48" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0068FF"/>
+      <stop offset="1" stop-color="#00D2FF"/>
+    </linearGradient>
+    <clipPath id="clip0_740_2477">
+      <rect width="48" height="48" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+      </div>
+    </div>
+
+    <div class="pt-0 md:pt-10 lg:pt-10 pb-20">
+       {% include 'components/business/faqOndemand.html' %}
+    </div>
+    </div>
+    </div>
+
+
+    <div class="bg-hero">
+
+    <div class="mx-auto max-w-screen-xl px-8 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Caja 1: +850 de contenido -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de contenido/archivos -->
+          
+            <div class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#0068FF] to-[#00D2FF] bg-clip-text text-transparent transition-all duration-300 ">
+            460
+          </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Horas académicas</div>
+          </div>
+        </div>
+
+        <!-- Caja 2: +70 cursos, workshops y masterclass -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de educación/cursos -->
+           
+           <div class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#0068FF] to-[#00D2FF] bg-clip-text text-transparent transition-all duration-300 ">
+            +68</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Especialistas</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">On Demand</div>
+          </div>
+        </div>
+
+        <!-- Caja 3: +16.500 profesionales capacitados -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de personas/profesionales -->
+           
+           <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="46" viewBox="0 0 44 46" fill="none">
+  <path d="M34.6311 0.207031H43.0642V45.0851H34.6311V0.207031ZM0.898438 28.2558H9.33159V45.0851H0.898438V28.2558ZM17.7647 14.2314H26.1979V45.0851H17.7647V14.2314Z" fill="url(#paint0_linear_740_2499)"/>
+  <defs>
+    <linearGradient id="paint0_linear_740_2499" x1="0.898438" y1="22.6461" x2="43.0642" y2="22.6461" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0068FF"/>
+      <stop offset="1" stop-color="#00D2FF"/>
+    </linearGradient>
+  </defs>
+</svg>
+            </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Nuevos lanzamientos</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">cada mes</div>
+          </div>
+        </div>
+
+        <!-- Caja 4: +15 empresas líderes confían en nosotros -->
+<div class="p-6 text-white flex flex-col items-center text-center">
+          <div class="text-center">
+            <!-- Icono de empresas/edificios -->
+            
+           <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="57" viewBox="0 0 60 57" fill="none">
+  <path d="M51.7273 15.8537C47.6442 15.8537 44.3483 19.122 44.3483 23.1707C44.3483 23.3415 44.3483 23.5122 44.3729 23.6829L39.3797 25.3415C37.8056 22.3902 34.9031 20.2439 31.4596 19.6829V14.4146C34.608 13.5854 36.9693 10.7317 36.9693 7.31707C36.9693 3.26829 33.6733 0 29.5903 0C25.5072 0 22.2113 3.26829 22.2113 7.31707C22.2113 10.7317 24.5725 13.5854 27.7455 14.4146V19.6829C24.302 20.2439 21.3996 22.3902 19.8254 25.3415L14.8076 23.6829C14.8322 23.5122 14.8322 23.3415 14.8322 23.1707C14.8322 19.122 11.5363 15.8537 7.45323 15.8537C3.37018 15.8537 0.0742188 19.122 0.0742188 23.1707C0.0742188 27.2195 3.37018 30.4878 7.45323 30.4878C10.0605 30.4878 12.3234 29.1463 13.6516 27.1463L18.6447 28.8049C18.1528 31.9512 19.0629 35.2927 21.3258 37.8049L17.8576 42.122C16.923 41.6829 15.9145 41.4634 14.8322 41.4634C10.7492 41.4634 7.45323 44.7317 7.45323 48.7805C7.45323 52.8293 10.7492 56.0976 14.8322 56.0976C18.9153 56.0976 22.2113 52.8293 22.2113 48.7805C22.2113 47.122 21.6701 45.6098 20.7354 44.3902L24.2036 40.0732C27.5487 41.9268 31.6318 41.9024 34.9523 40.0732L38.4205 44.3902C37.5104 45.6098 36.9693 47.122 36.9693 48.7805C36.9693 52.8293 40.2652 56.0976 44.3483 56.0976C48.4313 56.0976 51.7273 52.8293 51.7273 48.7805C51.7273 44.7317 48.4313 41.4634 44.3483 41.4634C43.266 41.4634 42.2576 41.6829 41.3229 42.0976L37.8548 37.7805C40.1422 35.2439 41.0277 31.9268 40.5358 28.7805L45.5289 27.122C46.8325 29.122 49.12 30.4634 51.7273 30.4634C55.8103 30.4634 59.1063 27.1951 59.1063 23.1463C59.1063 19.0976 55.8103 15.8537 51.7273 15.8537ZM7.45323 25.6098C6.10041 25.6098 4.99356 24.5122 4.99356 23.1707C4.99356 21.8293 6.10041 20.7317 7.45323 20.7317C8.80605 20.7317 9.9129 21.8293 9.9129 23.1707C9.9129 24.5122 8.80605 25.6098 7.45323 25.6098ZM14.8322 51.2195C13.4794 51.2195 12.3726 50.122 12.3726 48.7805C12.3726 47.439 13.4794 46.3415 14.8322 46.3415C16.1851 46.3415 17.2919 47.439 17.2919 48.7805C17.2919 50.122 16.1851 51.2195 14.8322 51.2195ZM27.1306 7.31707C27.1306 5.97561 28.2374 4.87805 29.5903 4.87805C30.9431 4.87805 32.0499 5.97561 32.0499 7.31707C32.0499 8.65854 30.9431 9.7561 29.5903 9.7561C28.2374 9.7561 27.1306 8.65854 27.1306 7.31707ZM29.5903 36.5854C26.1959 36.5854 23.4411 33.8537 23.4411 30.4878C23.4411 27.122 26.1959 24.3902 29.5903 24.3902C32.9846 24.3902 35.7394 27.122 35.7394 30.4878C35.7394 33.8537 32.9846 36.5854 29.5903 36.5854ZM44.3483 46.3415C45.7011 46.3415 46.8079 47.439 46.8079 48.7805C46.8079 50.122 45.7011 51.2195 44.3483 51.2195C42.9955 51.2195 41.8886 50.122 41.8886 48.7805C41.8886 47.439 42.9955 46.3415 44.3483 46.3415ZM51.7273 25.6098C50.3745 25.6098 49.2676 24.5122 49.2676 23.1707C49.2676 21.8293 50.3745 20.7317 51.7273 20.7317C53.0801 20.7317 54.187 21.8293 54.187 23.1707C54.187 24.5122 53.0801 25.6098 51.7273 25.6098Z" fill="url(#paint0_linear_740_2504)"/>
+  <defs>
+    <linearGradient id="paint0_linear_740_2504" x1="0.0742188" y1="28.0488" x2="59.1063" y2="28.0488" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0068FF"/>
+      <stop offset="1" stop-color="#00D2FF"/>
+    </linearGradient>
+  </defs>
+</svg>
+            </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">7 áreas para</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">especializarte</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  <div class="pt-10 bg-business-gradient">
+
+    <div class="mx-auto max-w-screen-xl px-8">
+      <div class="mt-10 mb-5 flex justify-center items-center bg-gradient-to-r from-[#0a1a2e] to-[#1a2a3e] py-4 px-8 rounded-xl w-[500px] max-w-full mx-auto shadow-2xl border border-[#0068FF]/20">
+        <span class="text-white font-bold text-xl tracking-wide">CONTENIDO ONLINE EN VIVO</span>
+        <div class="ml-6 flex items-center justify-center w-10 h-10 bg-transparent border-2 border-[#0068FF] rounded-xl shadow-[0_0_15px_rgba(0,104,255,0.6)]">
+          
+          <!-- Icono en vivo estilo ondas -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <path d="M37.9102 18.1113C40.5305 20.7361 42.0022 24.2935 42.0022 28.0023C42.0022 31.7112 40.5305 35.2685 37.9102 37.8933" stroke="url(#paint0_linear_798_4283)" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M44.5088 11.5117C48.8788 15.8868 51.3335 21.8177 51.3335 28.0014C51.3335 34.1851 48.8788 40.116 44.5088 44.4911" stroke="url(#paint1_linear_798_4283)" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11.4917 44.4911C7.12164 40.116 4.66699 34.1851 4.66699 28.0014C4.66699 21.8177 7.12164 15.8868 11.4917 11.5117" stroke="url(#paint2_linear_798_4283)" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.0901 37.8933C15.4697 35.2685 13.998 31.7112 13.998 28.0023C13.998 24.2935 15.4697 20.7361 18.0901 18.1113" stroke="url(#paint3_linear_798_4283)" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M27.9997 32.6673C30.577 32.6673 32.6663 30.578 32.6663 28.0007C32.6663 25.4233 30.577 23.334 27.9997 23.334C25.4223 23.334 23.333 25.4233 23.333 28.0007C23.333 30.578 25.4223 32.6673 27.9997 32.6673Z" stroke="url(#paint4_linear_798_4283)" stroke-width="4.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="paint0_linear_798_4283" x1="37.9102" y1="28.0023" x2="42.0022" y2="28.0023" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0068FF"/>
+            <stop offset="1" stop-color="#00D2FF"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_798_4283" x1="44.5088" y1="28.0014" x2="51.3335" y2="28.0014" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0068FF"/>
+            <stop offset="1" stop-color="#00D2FF"/>
+          </linearGradient>
+          <linearGradient id="paint2_linear_798_4283" x1="4.66699" y1="28.0014" x2="11.4917" y2="28.0014" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0068FF"/>
+            <stop offset="1" stop-color="#00D2FF"/>
+          </linearGradient>
+          <linearGradient id="paint3_linear_798_4283" x1="13.998" y1="28.0023" x2="18.0901" y2="28.0023" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0068FF"/>
+            <stop offset="1" stop-color="#00D2FF"/>
+          </linearGradient>
+          <linearGradient id="paint4_linear_798_4283" x1="23.333" y1="28.0007" x2="32.6663" y2="28.0007" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0068FF"/>
+            <stop offset="1" stop-color="#00D2FF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+        </div>
+      </div>
+
+
+
+    <div class="pt-0 md:pt-10 lg:pt-10 pb-20">
+        {% include 'components/business/onlineFaq.html' %}
+      </div>
+    </div>
+    </div>
+
+     <div class=" bg-hero">
+
+    <div class="mx-auto max-w-screen-xl px-8 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Caja 1: +850 de contenido -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de contenido/archivos -->
+          
+            <div class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#0068FF] to-[#00D2FF] bg-clip-text text-transparent transition-all duration-300 ">
+            408
+          </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Horas académicas</div>
+          </div>
+        </div>
+
+        <!-- Caja 2: +70 cursos, workshops y masterclass -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de educación/cursos -->
+           
+           <div class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#0068FF] to-[#00D2FF] bg-clip-text text-transparent transition-all duration-300 ">
+            +25</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Especialistas</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">On Demand</div>
+          </div>
+        </div>
+
+        <!-- Caja 3: +16.500 profesionales capacitados -->
+        <div class="p-6 text-white ">
+          <div class="text-center">
+            <!-- Icono de personas/profesionales -->
+           
+           <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="46" viewBox="0 0 44 46" fill="none">
+  <path d="M34.6311 0.207031H43.0642V45.0851H34.6311V0.207031ZM0.898438 28.2558H9.33159V45.0851H0.898438V28.2558ZM17.7647 14.2314H26.1979V45.0851H17.7647V14.2314Z" fill="url(#paint0_linear_740_2499)"/>
+  <defs>
+    <linearGradient id="paint0_linear_740_2499" x1="0.898438" y1="22.6461" x2="43.0642" y2="22.6461" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0068FF"/>
+      <stop offset="1" stop-color="#00D2FF"/>
+    </linearGradient>
+  </defs>
+</svg>
+            </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">Nuevos lanzamientos</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">cada mes</div>
+          </div>
+        </div>
+
+        <!-- Caja 4: +15 empresas líderes confían en nosotros -->
+<div class="p-6 text-white flex flex-col items-center text-center">
+          <div class="text-center">
+            <!-- Icono de empresas/edificios -->
+            
+           <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="57" viewBox="0 0 60 57" fill="none">
+  <path d="M51.7273 15.8537C47.6442 15.8537 44.3483 19.122 44.3483 23.1707C44.3483 23.3415 44.3483 23.5122 44.3729 23.6829L39.3797 25.3415C37.8056 22.3902 34.9031 20.2439 31.4596 19.6829V14.4146C34.608 13.5854 36.9693 10.7317 36.9693 7.31707C36.9693 3.26829 33.6733 0 29.5903 0C25.5072 0 22.2113 3.26829 22.2113 7.31707C22.2113 10.7317 24.5725 13.5854 27.7455 14.4146V19.6829C24.302 20.2439 21.3996 22.3902 19.8254 25.3415L14.8076 23.6829C14.8322 23.5122 14.8322 23.3415 14.8322 23.1707C14.8322 19.122 11.5363 15.8537 7.45323 15.8537C3.37018 15.8537 0.0742188 19.122 0.0742188 23.1707C0.0742188 27.2195 3.37018 30.4878 7.45323 30.4878C10.0605 30.4878 12.3234 29.1463 13.6516 27.1463L18.6447 28.8049C18.1528 31.9512 19.0629 35.2927 21.3258 37.8049L17.8576 42.122C16.923 41.6829 15.9145 41.4634 14.8322 41.4634C10.7492 41.4634 7.45323 44.7317 7.45323 48.7805C7.45323 52.8293 10.7492 56.0976 14.8322 56.0976C18.9153 56.0976 22.2113 52.8293 22.2113 48.7805C22.2113 47.122 21.6701 45.6098 20.7354 44.3902L24.2036 40.0732C27.5487 41.9268 31.6318 41.9024 34.9523 40.0732L38.4205 44.3902C37.5104 45.6098 36.9693 47.122 36.9693 48.7805C36.9693 52.8293 40.2652 56.0976 44.3483 56.0976C48.4313 56.0976 51.7273 52.8293 51.7273 48.7805C51.7273 44.7317 48.4313 41.4634 44.3483 41.4634C43.266 41.4634 42.2576 41.6829 41.3229 42.0976L37.8548 37.7805C40.1422 35.2439 41.0277 31.9268 40.5358 28.7805L45.5289 27.122C46.8325 29.122 49.12 30.4634 51.7273 30.4634C55.8103 30.4634 59.1063 27.1951 59.1063 23.1463C59.1063 19.0976 55.8103 15.8537 51.7273 15.8537ZM7.45323 25.6098C6.10041 25.6098 4.99356 24.5122 4.99356 23.1707C4.99356 21.8293 6.10041 20.7317 7.45323 20.7317C8.80605 20.7317 9.9129 21.8293 9.9129 23.1707C9.9129 24.5122 8.80605 25.6098 7.45323 25.6098ZM14.8322 51.2195C13.4794 51.2195 12.3726 50.122 12.3726 48.7805C12.3726 47.439 13.4794 46.3415 14.8322 46.3415C16.1851 46.3415 17.2919 47.439 17.2919 48.7805C17.2919 50.122 16.1851 51.2195 14.8322 51.2195ZM27.1306 7.31707C27.1306 5.97561 28.2374 4.87805 29.5903 4.87805C30.9431 4.87805 32.0499 5.97561 32.0499 7.31707C32.0499 8.65854 30.9431 9.7561 29.5903 9.7561C28.2374 9.7561 27.1306 8.65854 27.1306 7.31707ZM29.5903 36.5854C26.1959 36.5854 23.4411 33.8537 23.4411 30.4878C23.4411 27.122 26.1959 24.3902 29.5903 24.3902C32.9846 24.3902 35.7394 27.122 35.7394 30.4878C35.7394 33.8537 32.9846 36.5854 29.5903 36.5854ZM44.3483 46.3415C45.7011 46.3415 46.8079 47.439 46.8079 48.7805C46.8079 50.122 45.7011 51.2195 44.3483 51.2195C42.9955 51.2195 41.8886 50.122 41.8886 48.7805C41.8886 47.439 42.9955 46.3415 44.3483 46.3415ZM51.7273 25.6098C50.3745 25.6098 49.2676 24.5122 49.2676 23.1707C49.2676 21.8293 50.3745 20.7317 51.7273 20.7317C53.0801 20.7317 54.187 21.8293 54.187 23.1707C54.187 24.5122 53.0801 25.6098 51.7273 25.6098Z" fill="url(#paint0_linear_740_2504)"/>
+  <defs>
+    <linearGradient id="paint0_linear_740_2504" x1="0.0742188" y1="28.0488" x2="59.1063" y2="28.0488" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0068FF"/>
+      <stop offset="1" stop-color="#00D2FF"/>
+    </linearGradient>
+  </defs>
+</svg>
+            </div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">7 áreas para</div>
+            <div class="text-lg font-semibold group-hover:text-white transition-all duration-300">especializarte</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+    
+      <div class="py-20 bg-business-gradient">
+        {% include 'components/business/carouselPonents.html' %}
+            <div class="flex justify-center">
+              <a href="{% url 'ponents' %}"> 
+              <button class=" text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
+              Ver más ponentes
+              </button></a>
+          </div>
+        </div>
+
+        
+ 
+
+
+
+ <div class="bg-[#032744]" id="beneficios">
+    <div class="mx-auto max-w-screen-xl px-4 md:px-4 lg:px-4 xl:px-0 py-16">
+     
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+
+        <!-- Columna derecha: Contenido de texto -->
+        <div class="text-white space-y-8">
+        
+           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white">
+            Beneficios Exclusivos para <br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">EMPRESAS LÍDERES ASOCIADAS</span>
+          </h2>
+          
+  <ul class="space-y-4 ">
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-[15px]">Certificación Global Digital con Validación QR.</span>
+              </li>
+              
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-[15px]">Herramienta de IA a tu servicio para consultas o
+                resúmenes, 
+                papers, tesis y libros.</span>
+              </li>
+              
+           
+              
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Acceso Multidispositivo: Estudio desde cualquier lugar.</span>
+              </li>
+
+
+             <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Accesos a Workshops y Masterclass de minería y tecnología.</span>
+              </li>
+
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Rutas de aprendizaje personalizadas.</span>
+              </li>
+
+               <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Mentorías personalizadas con expertos en minería y tecnología.</span>
+              </li>
+
+               <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Talleres de Liderazgo.</span>
+              </li>
+
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Invitaciones a eventos de Networking Exclusivos.</span>
+              </li>
+
+               <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Actualizaciones Continuas: Contenido alineado con
+            las últimas tendencias tecnológicas en la industria.</span>
+              </li>
+
+
+            <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Acceso anticipado a nuevos cursos.
+                </span>
+              </li>
+
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Modelo Pay-Per-Use: Solo pagas por los cursos que
+                consumes fuera del paquete.
+                </span>
+              </li>
+
+
+               <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">El precio de membresía se mantiene mientras
+                    la suscripción está activa.
+                </span>
+              </li>
+            </ul>
+
+
+        </div>
+      
+      
+         <!-- Columna izquierda: Imagen -->
+        <div class="flex justify-center lg:justify-center relative">
+          <!-- Círculo de fondo -->
+         
+           <img 
+        src="{% static 'business/mockup-web.png' %}" 
+            alt="Personas trabajando en desarrollo de aplicaciones" 
+            class="w-full max-w-sm lg:max-w-sm relative z-10 rounded-2xl"
+
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+<div class="bg-business-gradient" id="beneficios">
+    <div class="mx-auto max-w-screen-xl px-4 md:px-4 py-16 md:py-18 lg:py-24  ">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-center text-white pb-10">
+            Beneficios Exclusivos para <br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">EMPRESAS LÍDERES ASOCIADAS</span>
+          </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+
+         <!-- Columna izquierda: Imagen -->
+        <div class="flex justify-center lg:justify-start relative">
+          <!-- Círculo de fondo -->
+         <img 
+        src="{% static 'business/beneficios-hijos.png' %}" 
+            alt="Personas trabajando en desarrollo de aplicaciones" 
+            class="w-full max-w-md lg:max-w-lg relative z-10 rounded-2xl"
+          />
+        </div>
+        <!-- Columna derecha: Contenido de texto -->
+        <div class="text-white space-y-6">
+        
+          
+           <ul class="space-y-4 ">
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-[15px]">Los hijos de sus empleados con membresía tendrán acceso
+                a descuentos en programas de capacitación para desarrollar
+                habilidades tecnológicas en CODEa UNI Tech.</span>
+              </li>
+              
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-[15px]">Acceso a un 30% de descuento en el programa de Programación
+                con Minecraft para niños y preadolescentes.</span>
+              </li>
+              
+              
+              <li class="flex items-start space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
+                <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0068FF"/>
+                    <stop offset="1" stop-color="#00D2FF"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+                <span class="text-base md:text-[15px]">Acceso a un 30% de descuento en el curso de Programación
+                con Python para adolescentes.</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="bg-hero" id="membresias">
+    <div class="mx-auto max-w-screen-xl px-4 py-20">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white text-center">
+    Membresia CODEA <br> <span style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BUSINESS</span>
+    </h2>
+
+ <!-- Pricing Section -->
+  <div class="py-16">
+ 
+
+      <!-- Pricing Table -->
+      <div x-data="{ selectedPlan: 'plan1' }" class="bg-white rounded-xl p-8 max-w-5xl mx-auto">
+        <!-- Table Header -->
+        <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 mb-8">
+          <div class="text-center p-4 border-2 border-[#00D2FF] rounded-xl">
+            <h3 class="text-black font-bold text-lg">Usuarios</h3>
+            <p class="text-black text-[15px]">(Cantidad)</p>
+          </div>
+          <div class="text-center p-4 border-2 border-[#00D2FF] rounded-xl">
+            <h3 class="text-black font-bold text-lg">Cargo base</h3>
+            <p class="text-black text-[15px]">(USD x año)</p>
+          </div>
+          <div class="text-center p-4 border-2 border-[#00D2FF] rounded-xl">
+            <h3 class="text-black font-bold text-lg">%DSCTO</h3>
+            <p class="text-black text-[15px]">(en otros cursos)</p>
+          </div>
+        </div>
+
+        <div id="price-options" class="space-y-6">
+          <!-- Tier 1: 2-10 users -->
+          <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 items-center">
+            <div class="flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 39 28" fill="black">
+            <path d="M13.5 17.6758C8.98714 17.6758 0 19.9322 0 24.4258V27.8008H27V24.4258C27 19.9322 18.0129 17.6758 13.5 17.6758ZM4.51286 23.9436C6.13286 22.8251 10.0479 21.5329 13.5 21.5329C16.9521 21.5329 20.8671 22.8251 22.4871 23.9436H4.51286ZM13.5 14.3008C17.2221 14.3008 20.25 11.2729 20.25 7.55078C20.25 3.82864 17.2221 0.800781 13.5 0.800781C9.77786 0.800781 6.75 3.82864 6.75 7.55078C6.75 11.2729 9.77786 14.3008 13.5 14.3008ZM13.5 4.65792C15.1007 4.65792 16.3929 5.95007 16.3929 7.55078C16.3929 9.1515 15.1007 10.4436 13.5 10.4436C11.8993 10.4436 10.6071 9.1515 10.6071 7.55078C10.6071 5.95007 11.8993 4.65792 13.5 4.65792ZM27.0771 17.7915C29.3143 19.4115 30.8571 21.5715 30.8571 24.4258V27.8008H38.5714V24.4258C38.5714 20.5301 31.8214 18.3122 27.0771 17.7915ZM25.0714 14.3008C28.7936 14.3008 31.8214 11.2729 31.8214 7.55078C31.8214 3.82864 28.7936 0.800781 25.0714 0.800781C24.03 0.800781 23.0657 1.0515 22.1786 1.47578C23.3936 3.19221 24.1071 5.29435 24.1071 7.55078C24.1071 9.80721 23.3936 11.9094 22.1786 13.6258C23.0657 14.0501 24.03 14.3008 25.0714 14.3008Z" fill="black"/>
+            </svg>
+
+              <span class="text-gray-800 font-semibold">2-10</span>
+            </div>
+            <div class="text-center">
+         
+            <span
+              class="text-gray-800 font-bold text-lg py-3 px-2 border border-[#00D2FF] rounded-xl cursor-pointer transition-colors duration-300"
+              :class="selectedPlan === 'plan1' ? 'bg-sky-300' : ''"
+              @click="selectedPlan = 'plan1'"
+            >
+              $200 x usuario
+            </span>
+
+
+            </div>
+            <div class="text-center">
+              <span class="text-gray-800 font-bold text-lg">20%</span>
+            </div>
+          </div>
+
+          <!-- Tier 2: 11-100 users -->
+          <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 items-center">
+            <div class="flex items-center justify-center space-x-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 39 28" fill="black">
+            <path d="M13.5 17.6758C8.98714 17.6758 0 19.9322 0 24.4258V27.8008H27V24.4258C27 19.9322 18.0129 17.6758 13.5 17.6758ZM4.51286 23.9436C6.13286 22.8251 10.0479 21.5329 13.5 21.5329C16.9521 21.5329 20.8671 22.8251 22.4871 23.9436H4.51286ZM13.5 14.3008C17.2221 14.3008 20.25 11.2729 20.25 7.55078C20.25 3.82864 17.2221 0.800781 13.5 0.800781C9.77786 0.800781 6.75 3.82864 6.75 7.55078C6.75 11.2729 9.77786 14.3008 13.5 14.3008ZM13.5 4.65792C15.1007 4.65792 16.3929 5.95007 16.3929 7.55078C16.3929 9.1515 15.1007 10.4436 13.5 10.4436C11.8993 10.4436 10.6071 9.1515 10.6071 7.55078C10.6071 5.95007 11.8993 4.65792 13.5 4.65792ZM27.0771 17.7915C29.3143 19.4115 30.8571 21.5715 30.8571 24.4258V27.8008H38.5714V24.4258C38.5714 20.5301 31.8214 18.3122 27.0771 17.7915ZM25.0714 14.3008C28.7936 14.3008 31.8214 11.2729 31.8214 7.55078C31.8214 3.82864 28.7936 0.800781 25.0714 0.800781C24.03 0.800781 23.0657 1.0515 22.1786 1.47578C23.3936 3.19221 24.1071 5.29435 24.1071 7.55078C24.1071 9.80721 23.3936 11.9094 22.1786 13.6258C23.0657 14.0501 24.03 14.3008 25.0714 14.3008Z" fill="black"/>
+            </svg>
+              <span class="text-gray-800 font-semibold">11-100</span>
+            </div>
+            <div class="text-center relative">
+              <span
+        class="text-gray-800 font-bold text-lg py-3 px-2 border border-[#00D2FF] rounded-xl cursor-pointer transition-colors duration-300"
+        :class="selectedPlan === 'plan2' ? 'bg-sky-300' : ''"
+        @click="selectedPlan = 'plan2'"
+      >
+        $170 x usuario
+      </span>
+              <div class="absolute -top-2 -right-2 bg-[#00D2FF] text-black text-xs px-2 py-1 rounded-full">
+                15%Off
+              </div>
+            </div>
+            <div class="text-center">
+              <span class="text-gray-800 font-bold text-lg">25%</span>
+            </div>
+          </div>
+
+          <!-- Tier 3: +100 users -->
+          <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 items-center">
+            <div class="flex items-center justify-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 39 28" fill="black">
+            <path d="M13.5 17.6758C8.98714 17.6758 0 19.9322 0 24.4258V27.8008H27V24.4258C27 19.9322 18.0129 17.6758 13.5 17.6758ZM4.51286 23.9436C6.13286 22.8251 10.0479 21.5329 13.5 21.5329C16.9521 21.5329 20.8671 22.8251 22.4871 23.9436H4.51286ZM13.5 14.3008C17.2221 14.3008 20.25 11.2729 20.25 7.55078C20.25 3.82864 17.2221 0.800781 13.5 0.800781C9.77786 0.800781 6.75 3.82864 6.75 7.55078C6.75 11.2729 9.77786 14.3008 13.5 14.3008ZM13.5 4.65792C15.1007 4.65792 16.3929 5.95007 16.3929 7.55078C16.3929 9.1515 15.1007 10.4436 13.5 10.4436C11.8993 10.4436 10.6071 9.1515 10.6071 7.55078C10.6071 5.95007 11.8993 4.65792 13.5 4.65792ZM27.0771 17.7915C29.3143 19.4115 30.8571 21.5715 30.8571 24.4258V27.8008H38.5714V24.4258C38.5714 20.5301 31.8214 18.3122 27.0771 17.7915ZM25.0714 14.3008C28.7936 14.3008 31.8214 11.2729 31.8214 7.55078C31.8214 3.82864 28.7936 0.800781 25.0714 0.800781C24.03 0.800781 23.0657 1.0515 22.1786 1.47578C23.3936 3.19221 24.1071 5.29435 24.1071 7.55078C24.1071 9.80721 23.3936 11.9094 22.1786 13.6258C23.0657 14.0501 24.03 14.3008 25.0714 14.3008Z" fill="black"/>
+            </svg>
+              <span class="text-gray-800 font-semibold">+100</span>
+            </div>
+            <div class="text-center relative">
+              <span
+        class="text-gray-800 font-bold text-lg py-3 px-2 border border-[#00D2FF] rounded-xl cursor-pointer transition-colors duration-300"
+        :class="selectedPlan === 'plan3' ? 'bg-sky-300' : ''"
+        @click="selectedPlan = 'plan3'"
+      >
+        $150 x usuario
+      </span>
+              <div class="absolute -top-2 -right-2 bg-[#00D2FF] text-black text-xs px-2 py-1 rounded-full">
+                25%Off
+              </div>
+            </div>
+            <div class="text-center">
+              <span class="text-gray-800 font-bold text-lg">30%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="mt-14 text-center">
+          <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-14">
+            <!-- PayPal -->
+            <div class="flex items-center space-x-2">
+              <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-6 md:h-8">
+            </div>
+            <!-- VISA & MasterCard -->
+            <div class="flex items-center space-x-2">
+              <img src="{% static 'Visa_Logo.png' %}" alt="VISA" class="h-6 md:h-8">
+            </div>
+            <!-- Bitcoin -->
+            <div class="flex items-center space-x-2">
+              <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-6 md:h-8">
+            </div>
+            <!-- Western Union -->
+            <div class="flex items-center space-x-2">
+              <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-6 md:h-8">
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="mt-12 flex flex-wrap sm:flex-row justify-center gap-4">
+            <button
+              @click="window.openFormBussines(selectedPlan)"
+              class="px-8 py-3 border-2 border-[#00D2FF] text-black font-semibold rounded-lg hover:bg-[#00D2FF] hover:text-white transition-all duration-300">
+              Comprar
+            </button>
+            <button onclick="openFormBussinesFree()" class="text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
+            Prueba gratuita
+            </button>
+        </div>
+      </div>
+  </div>
+    </div>
+</div>
+
+
+<script>
+    document.querySelectorAll('#price-options span').forEach(span => {
+        span.addEventListener('click', () => {
+            document.querySelectorAll('#price-options span')
+                .forEach(s => s.classList.remove('bg-sky-300'));
+
+            span.classList.add('bg-sky-300');
+        });
+    });
+</script>
+
+
+
+<div class="py-20">
+{% include 'components/business/carouselTestimonials.html' %}
+</div>
+
+    
+    <div class="py-16">
+            {% include 'components/business/carouselReels.html' %}
+    </div>
+
+
+
+
+
+<div class="bg-business-gradient">
+    {% include 'components/business/frequentlyfaq.html' %}
+</div>
+
+    {% include 'components/business/footer.html' %}
+
+{% endblock %}
