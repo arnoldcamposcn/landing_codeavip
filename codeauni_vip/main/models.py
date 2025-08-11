@@ -2,66 +2,68 @@ from django.db import models
 
 # Create your models here.
 class Docente(models.Model):
-    nombre = models.CharField(max_length=100)
-    profesion = models.CharField(max_length=100)
-    linkedin = models.URLField(blank=True)
-    foto = models.ImageField(upload_to='docentes/')
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    profesion = models.CharField(max_length=100, blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    foto = models.ImageField(upload_to='docentes/', blank=True)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre or "Sin nombre"
     
 
-
 class Estudiantes(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=100)
-    profesion = models.CharField(max_length=100)
-    foto = models.ImageField(upload_to='estudiantes/')
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.CharField(max_length=100, blank=True, null=True)
+    profesion = models.CharField(max_length=100, blank=True, null=True)
+    foto = models.ImageField(upload_to='estudiantes/', blank=True)
 
     def __str__(self):
-        return self.nombre
-
+        return self.nombre or "Sin nombre"
 
 
 class HistoriaVideo(models.Model):
-    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)  # <- ahora no requerido
-    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)  # <- no requerido
-    reel = models.URLField("Enlace al Reel", blank=True, null=True)  # ya estaba opcional
+    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)
+    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)
+    reel = models.URLField("Enlace al Reel", blank=True, null=True)
 
     def __str__(self):
         return self.nombre or "Sin nombre"
-
-
 
 
 class DocenteBusiness(models.Model):
-    nombre = models.CharField(max_length=100)
-    profesion = models.CharField(max_length=100)
-    linkedin = models.URLField(blank=True)
-    foto = models.ImageField(upload_to='docentes/')
-
-    def __str__(self):
-        return self.nombre
-
-
-
-class EstudiantesBusiness(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=100)
-    profesion = models.CharField(max_length=100)
-    foto = models.ImageField(upload_to='estudiantes/')
-
-    def __str__(self):
-        return self.nombre
-    
-
-class HistoriaVideoBusiness(models.Model):
-    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)  # <- ahora no requerido
-    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)  # <- no requerido
-    reel = models.URLField("Enlace al Reel", blank=True, null=True)  # ya estaba opcional
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    profesion = models.CharField(max_length=100, blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    foto = models.ImageField(upload_to='docentes/', blank=True)
 
     def __str__(self):
         return self.nombre or "Sin nombre"
+
+
+class EstudiantesBusiness(models.Model):
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.CharField(max_length=100, blank=True, null=True)
+    profesion = models.CharField(max_length=100, blank=True, null=True)
+    foto = models.ImageField(upload_to='estudiantes/', blank=True)
+
+    def __str__(self):
+        return self.nombre or "Sin nombre"
+    
+
+class HistoriaVideoBusiness(models.Model):
+    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)
+    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)
+    reel = models.URLField("Enlace al Reel", blank=True, null=True)
+
+    def __str__(self):
+        return self.nombre or "Sin nombre"
+
+
+class marcas_bussines(models.Model):
+    imagen = models.ImageField(upload_to='marcas/', blank=True)
+
+    def __str__(self):
+        return f"Marca {self.id}"
 
 
 
@@ -141,9 +143,3 @@ class membresia_free_bussines(models.Model):
         return f"{self.nombre_empresa} - {self.nombre_encargado}"
 
 
-
-class marcas_bussines(models.Model):
-    imagen = models.ImageField(upload_to='marcas/')
-
-    def __str__(self):
-        return f"Marca {self.id}"
