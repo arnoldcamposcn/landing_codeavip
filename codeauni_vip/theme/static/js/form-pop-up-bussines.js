@@ -80,7 +80,7 @@ window.openFormBussines = function(selectedPlan) {
           Quedo atento(a) a sus indicaciones para continuar con el proceso.  
           Saludos.`;
 
-          const telefonoDestino = '51919543397';
+          const telefonoDestino = '51955283690';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
           window.open(url, '_blank');
 

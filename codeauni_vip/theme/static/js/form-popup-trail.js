@@ -62,7 +62,7 @@ function openFormFree() {
             Quedo atento(a) a su respuesta y a los pasos para acceder a la prueba.  
             Saludos .`;
   
-          const telefonoDestino = '51919543397';
+          const telefonoDestino = '51955283690';
           const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
           window.open(url, '_blank');
   

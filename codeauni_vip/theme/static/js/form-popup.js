@@ -118,7 +118,7 @@ function openFormPayment(tipo = 'estudiante') {
         Quedo atento(a) a su confirmación y a los pasos para completar la compra.  
         Saludos.`;
 
-        const telefonoDestino = '51919543397';
+        const telefonoDestino = '51955283690';
         const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
 
