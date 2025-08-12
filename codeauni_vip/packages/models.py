@@ -1,5 +1,9 @@
 from django.db import models
 from multiselectfield import MultiSelectField
+from django.core.exceptions import ValidationError
+from django.core.files.images import get_image_dimensions
+from PIL import Image
+import os
 
 class TipoContenido(models.Model):
     nombre = models.CharField(max_length=100)
@@ -11,9 +15,36 @@ class TipoContenido(models.Model):
         verbose_name = "tipo_de_contenido"
 
 
+def validate_image_file(value):
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp']
+    ext = os.path.splitext(value.name)[1].lower()
+    
+    if ext not in valid_extensions:
+        raise ValidationError(
+            f'Formato de archivo no soportado. Use: {", ".join(valid_extensions)}'
+        )
+    
+    try:
+        image = Image.open(value)
+        image.verify()
+        
+        if value.size > 3 * 1024 * 1024:  
+            raise ValidationError('El archivo no debe exceder 3MB')
+            
+    except Exception as e:
+        raise ValidationError('El archivo no debe exceder 3MB')
+
 class Tema(models.Model):
     titulo = models.CharField(max_length=200)
-    portada = models.ImageField(upload_to='portada/', blank=True)
+    portada = models.ImageField(
+        upload_to='portada/',
+        blank=True,
+        validators=[validate_image_file],
+        help_text="Formatos permitidos: JPG, JPEG, PNG, GIF, WebP. Tamaño máximo: 3MB"
+    )
+
+    def __str__(self):
+        return self.titulo
 
 
     def __str__(self):

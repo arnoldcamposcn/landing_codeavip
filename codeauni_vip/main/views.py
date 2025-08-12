@@ -15,7 +15,7 @@ def home(request):
     cursos = Curso.objects.all()
     temas = Tema.objects.all()
     membresias = MembresiaVIP.objects.all().order_by('precio')
-
+    historias_videos = HistoriaVideoBusiness.objects.all()
 
     capitulos_ondemand = (
         Curso.objects.filter(
@@ -33,6 +33,7 @@ def home(request):
 
     return render(request, 'home.html', {
         'docentes': docentes,
+        'historias_videos': historias_videos,
         'estudiantes': estudiantes,
         'temas': temas,
         'capitulos_ondemand': capitulos_ondemand,

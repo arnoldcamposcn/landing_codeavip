@@ -1,5 +1,6 @@
 from django.db import models
 from decimal import Decimal
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Docente(models.Model):
@@ -31,9 +32,19 @@ class Clientes(models.Model):
         verbose_name_plural = "clientes"
 
 
-
+def validar_tamano_video(value):
+    limit_mb = 5
+    if value.size > limit_mb * 1024 * 1024:
+        raise ValidationError(f"El tamaño máximo permitido es {limit_mb} MB")
+    
 class HistoriaVideoBusiness(models.Model):
-    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)
+    video = models.FileField(
+        "Video",
+        upload_to='historias/',
+        blank=True,
+        null=True,
+        validators=[validar_tamano_video]  # 👈 Aquí aplicamos el validador
+    )
 
     def __str__(self):
         return f"HistoriaVideoBusiness #{self.id}"
@@ -41,7 +52,6 @@ class HistoriaVideoBusiness(models.Model):
     class Meta:
         verbose_name = "Historia_videos_business"
         verbose_name_plural = "Historia_videos_business"
-
 
 
 class marcas_bussines(models.Model):

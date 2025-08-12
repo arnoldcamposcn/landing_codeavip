@@ -135,6 +135,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -150,9 +155,10 @@ INTERNAL_IPS = [
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'camposcnprueba@gmail.com'
-EMAIL_HOST_PASSWORD = 'prueba2'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'AKIA23P6DD7UM6ID7SMJ'
+EMAIL_HOST_PASSWORD = 'BMQcHKAXVjksFRElgqBPYA4mRcj7jIBhCVFrB/Wo6NBY'
+DEFAULT_FROM_EMAIL = 'ventasycotizaciones@codeauni.com'
+SERVER_EMAIL = 'ventasycotizaciones@codeauni.com'
