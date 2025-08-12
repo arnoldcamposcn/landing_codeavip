@@ -1,28 +1,42 @@
-function openFormPayment(tipo = 'estudiante') {
+function openFormPayment(tipo = 'estudiante', precio_base) {
   let formSubmitted = false;
 
   const precios = {
     estudiante: {
       label: 'Estudiante',
-      detalles: [
-        '1 Membresía Estudiante $149.90/año',
-        '2 Membresías Estudiante $269.82/año',
-        '3 Membresías Estudiante $359.76/año'
-      ],
+      detalles: function() {
+        const precio1 = precio_base;
+        const precio2 = (precio_base * 2) * 0.9;  // 10% descuento
+        const precio3 = (precio_base * 3) * 0.8;  // 20% descuento
+        
+        return [
+          `1 Membresía Estudiante $${precio1.toFixed(2)}/año`,
+          `2 Membresías Estudiante $${precio2.toFixed(2)}/año`,
+          `3 Membresías Estudiante $${precio3.toFixed(2)}/año`
+        ]
+      },
       endpoint: '/api/guardar-formulario/'
     },
     profesional: {
       label: 'Profesional',
-      detalles: [
-        '1 Membresía Profesional $249.90/año',
-        '2 Membresías Profesional $449.82/año',
-        '3 Membresías Profesional $599.76/año'
-      ],
+      detalles: function() {
+
+        const precio1 = parseFloat(precio_base);
+        const precio2 = (precio1 * 2) * 0.9; 
+        const precio3 = (precio1 * 3) * 0.8; 
+        
+        return [
+          `1 Membresía Profesional $${precio1.toFixed(2)}/año`,
+          `2 Membresías Profesional $${precio2.toFixed(2)}/año`,
+          `3 Membresías Profesional $${precio3.toFixed(2)}/año`
+        ]
+      },
       endpoint: '/api/guardar-formulario-profesional/'
     }
   };
 
   const datos = precios[tipo] || precios.estudiante;
+  datos.detalles = datos.detalles();
 
   Swal.fire({
     title: ' ',

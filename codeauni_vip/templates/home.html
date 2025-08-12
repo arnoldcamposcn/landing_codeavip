@@ -559,8 +559,6 @@
 </div>
 {% endcomment %}
 
-
-
 <div class="bg-business-gradient" id="membresias">
      <!-- Sección de Planes -->
      <div class="mx-auto max-w-screen-xl px-4 md:px-20 lg:px-20 xl:px-0 py-20">
@@ -579,7 +577,9 @@
            <!-- Header con oferta -->
            
      <div class=" text-white text-center py-4 px-4 rounded-t-3xl" style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));">
-             <span class="text-base font-bold"></span>
+            {% if membresia.etiqueta_cabecera %}
+              <span class="text-base font-bold">{{ membresia.etiqueta_cabecera }}</span>
+            {% endif %}
            </div>
            <div class="py-8 px-10">
            <!-- Título -->
@@ -590,11 +590,17 @@
            <div class="text-center mb-8 flex justify-center gap-2 items-center">
              <div class="flex flex-col items-center">
                <span class="text-lg font-bold text-white">US$</span>
-               <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">46% OFF</span>
-             </div>
+               {% with oferta_val=membresia.oferta|default_if_none:'' %}
+               {% if oferta_val %}
+                   <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">
+                       {{ oferta_val }}
+                   </span>
+               {% endif %}
+           {% endwith %}
+            </div>
 
              <div class="flex items-center gap-1">
-               <span class="text-6xl font-bold text-white">{{ membresia.precio_final|floatformat:2 }}</span>
+               <span class="text-6xl font-bold text-white">{{ membresia.precio}}</span>
                <div class="flex flex-col items-center gap-1">
                <span class="text-white text-sm">/año</span>
                </div>
@@ -623,27 +629,37 @@
             {% endfor %}
            </ul>
 
-  <!-- Métodos de pago -->
-       <div class="flex justify-center items-center gap-1 py-6">
-        <!-- Columna 1 -->
-        <div class="flex flex-col items-center flex-1">
-          <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
-          <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
-        </div>
-        <!-- Columna 2 -->
-        <div class="flex flex-col items-center gap-2 flex-1">
-          <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
-          <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
-        </div>
-      </div>
+                <!-- Métodos de pago -->
+                <div class="flex justify-center items-center gap-1 py-6">
+                <!-- Columna 1 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
+                  <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
+                  <img src="{% static 'yape.png' %}" alt="Yape" class="h-8 md:h-10">
+                </div>
+
+                <!-- Columna 3 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
+                  <img src="{% static 'plin.png' %}" alt="Plin" class="h-8 md:h-10">
+
+                </div>
+              </div>
+
            <div class="flex flex-col gap-4 justify-center items-center">
            <div class="w-64 flex flex-col gap-4 justify-center items-center">
               <button onclick="openFormFree()"class="text-white font-semibold py-3 px-10 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
                  Prueba gratuita
                </button>
-               <button onclick="openFormPayment()" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
-                 Comprar
-               </button>
+              <button onclick="openFormPayment('estudiante', {{ membresia.precio }})" 
+        class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white">
+    Comprar
+</button>
            </div>
            </div>
          </div>
@@ -661,7 +677,10 @@
            <!-- Header con oferta -->
            
      <div class=" text-white text-center py-4 px-4 rounded-t-3xl" style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));">
-             <span class="text-base font-bold"></span>
+             {% if membresia.etiqueta_cabecera %}
+              <span class="text-base font-bold">{{ membresia.etiqueta_cabecera }}</span>
+            {% endif %}
+
            </div>
            <div class="py-8 px-10">
            <!-- Título -->
@@ -672,11 +691,18 @@
            <div class="text-center mb-8 flex justify-center gap-2 items-center">
              <div class="flex flex-col items-center">
                <span class="text-lg font-bold text-white">US$</span>
-               <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">{membresia.oferta}</span>
+               {% with oferta_val=membresia.oferta|default_if_none:'' %}
+                {% if oferta_val %}
+                    <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">
+                        {{ oferta_val }}
+                    </span>
+                {% endif %}
+            {% endwith %}
              </div>
 
              <div class="flex items-center gap-1">
-               <span class="text-6xl font-bold text-white">{{ membresia.precio_final|floatformat:2 }}</span>
+               <span class="text-6xl font-bold text-white">{{ membresia.precio}}</span>
+               
                <div class="flex flex-col items-center gap-1">
                <span class="text-white text-sm">/año</span>
                </div>
@@ -684,7 +710,6 @@
              </div>
            </div>
 
-           
            <!-- Lista de características -->
            <ul class="space-y-4 mb-2 flex-1 text-white">
              {% for beneficio in membresia.beneficios.splitlines %}
@@ -707,25 +732,34 @@
 
       <!-- Métodos de pago -->
        <div class="flex justify-center items-center gap-1 py-6">
-        <!-- Columna 1 -->
-        <div class="flex flex-col items-center flex-1">
-          <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
-          <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
-        </div>
-        <!-- Columna 2 -->
-        <div class="flex flex-col items-center gap-2 flex-1">
-          <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
-          <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
-        </div>
-         </div>
+                <!-- Columna 1 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
+                  <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
+                  <img src="{% static 'yape.png' %}" alt="Yape" class="h-8 md:h-10">
+                </div>
+
+                <!-- Columna 3 -->
+                <div class="flex flex-col items-center flex-1">
+                  <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
+                  <img src="{% static 'plin.png' %}" alt="Plin" class="h-8 md:h-10">
+
+                </div>
+              </div>
            <div class="flex flex-col gap-4 justify-center items-center">
            <div class="w-64 flex flex-col gap-4 justify-center items-center">
               <button onclick="openFormFree()"class="text-white font-semibold py-3 px-10 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
                  Prueba gratuita
                </button>
-               <button onclick="openFormPayment('profesional')" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
-                 Comprar
-               </button>
+               <button onclick="openFormPayment('profesional', {{ membresia.precio }})" 
+                    class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white">
+                Comprar
+            </button>
            </div>
            </div>
          </div>

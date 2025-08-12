@@ -861,6 +861,10 @@ video {
   height: 1px;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .max-h-16 {
   max-height: 4rem;
 }
@@ -951,10 +955,6 @@ video {
 
 .max-w-40 {
   max-width: 10rem;
-}
-
-.max-w-48 {
-  max-width: 12rem;
 }
 
 .max-w-4xl {

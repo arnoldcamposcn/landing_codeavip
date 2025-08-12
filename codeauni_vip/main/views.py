@@ -44,7 +44,7 @@ def home(request):
 
 def business(request):
     docentes = Docente.objects.all()
-    videos = HistoriaVideoBusiness.objects.exclude(reel__isnull=True).exclude(reel__exact='')
+    historias_videos = HistoriaVideoBusiness.objects.all()
     estudiantes = Clientes.objects.all()
     cursos = Tema.objects.all()
 
@@ -67,7 +67,7 @@ def business(request):
 
     return render(request, 'pages/bussines.html', {
         'docentes': docentes,
-        'videos': videos,
+        'historias_videos': historias_videos,
         'estudiantes': estudiantes,
         'temas': temas,
         'capitulos_ondemand': capitulos_ondemand,

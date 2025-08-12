@@ -14,7 +14,7 @@ class ClientesAdmin(admin.ModelAdmin):
 
 @admin.register(HistoriaVideoBusiness)
 class HistoriaVideoAdmin(admin.ModelAdmin):
-    list_display = ('video', 'reel')
+    list_display = ('id', 'video')
 
 
 @admin.register(marcas_bussines)
@@ -22,14 +22,6 @@ class marcas_bussinesAdmin(admin.ModelAdmin):
     list_display = ('imagen',)  
 
 
-
 @admin.register(MembresiaVIP)
 class MembresiaVIPAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'precio', 'descuento', 'precio_final_display')
-    list_filter = ('descuento',)
-    search_fields = ('nombre', 'beneficios')
-
-    def precio_final_display(self, obj):
-        """Muestra el precio final en el admin."""
-        return f"${obj.precio_final:.2f}"
-    precio_final_display.short_description = 'Precio Final'
+    list_display = ('nombre', 'precio', 'oferta', 'beneficios', 'etiqueta_cabecera')
