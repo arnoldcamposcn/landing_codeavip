@@ -1,9 +1,20 @@
 from django.db import models
 from multiselectfield import MultiSelectField
 
+class TipoContenido(models.Model):
+    nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = "tipo_de_contenido"
+
 
 class Tema(models.Model):
     titulo = models.CharField(max_length=200)
+    portada = models.ImageField(upload_to='portada/', blank=True)
+
 
     def __str__(self):
         return self.titulo
@@ -14,12 +25,6 @@ class Curso(models.Model):
         ('', 'Seleccionar'),
         ('ondemand', 'On Demand'),
         ('envivo', 'En Vivo'),
-    ]
-
-    CONTENIDO_CHOICES = [
-        ('', 'Seleccionar'),
-        ('masterclass', 'Masterclass'),
-        ('curso', 'Curso'),
     ]
 
     DIAS_SEMANA = [
@@ -43,12 +48,12 @@ class Curso(models.Model):
         default=''
     )
     
-    tipo_contenido = models.CharField(
-        max_length=20,
-        choices=CONTENIDO_CHOICES,
+    tipo_contenido = models.ForeignKey(
+        TipoContenido,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        default=''
+        related_name='cursos'
     )
 
     dias_disponibles = MultiSelectField(
@@ -59,27 +64,39 @@ class Curso(models.Model):
 
     def __str__(self):
         return f"{self.titulo} ({self.tema.titulo})"
+    
+    
+    mostrar_en_vip = models.BooleanField(
+        default=False,
+        verbose_name="Mostrar en VIP",
+    )
+    mostrar_en_business = models.BooleanField(
+        default=False,
+        verbose_name="Mostrar en Business",
+    )
 
     
 
-class Temario(models.Model):
-    MODULO_CHOICES = [
-        ('modulo_1', 'Módulo 1'),
-        ('modulo_2', 'Módulo 2'),
-        ('modulo_3', 'Módulo 3'),
-        ('modulo_4', 'Módulo 4'),
-    ]
-
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='temarios')
-    capitulo = models.CharField(max_length=255)  # Título del capítulo
-    descripcion = models.TextField(blank=True)   # Descripción corta o larga de la clase
-    tipo_modulo = models.CharField(max_length=20, choices=MODULO_CHOICES)
-
-    orden = models.PositiveIntegerField(default=0)  # Para ordenar los capítulos dentro del módulo
-
-    class Meta:
-        ordering = ['tipo_modulo', 'orden']
+class TipoModulo(models.Model):
+    nombre = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.capitulo} ({self.get_tipo_modulo_display()} - {self.curso.titulo})"
+        return self.nombre
 
+    class Meta:
+        verbose_name = "crear_modulo"
+
+
+
+class Temario(models.Model):
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='temarios')
+    capitulo = models.CharField(max_length=255)
+    descripcion = models.TextField(blank=True)
+    tipo_modulo = models.ForeignKey(
+        TipoModulo,
+        on_delete=models.CASCADE,
+        related_name='temarios'
+    )
+
+    def __str__(self):
+        return f"{self.capitulo} ({self.tipo_modulo.nombre} - {self.curso.titulo})"

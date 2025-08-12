@@ -1,100 +1,226 @@
-
 {% load static %}
-    <section class="text-white pb-12 overflow-hidden">
-      <div class="mx-auto w-screen">
-        <div class="text-center mb-12">
-         
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-          APRENDE DE EXPERTOS
-        </h2>
+<section class="text-white pb-12 overflow-hidden">
+  <div class="mx-auto w-screen">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        APRENDE DE EXPERTOS
+      </h2>
 
-         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-          <span>EN LA</span> <span class="neon-text">INDUSTRIA MINERA</span><br>
-         
-        </h2>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        <span>EN LA</span> <span class="neon-text">INDUSTRIA MINERA</span><br />
+      </h2>
 
-        <div class="bar "></div>
-        </div>
-
-        <div class="relative overflow-hidden">
-          <div class="flex animate-scroll">
-            <div class="flex flex-nowrap gap-4">
-              {% for docente in docentes %}
-              <!-- Testimonio dinámico -->
-            <!-- Testimonio dinámico duplicado -->
-<div class="flex-shrink-0 w-96 px-4">
-  
-  <!-- Contenedor con gradiente -->
-  <div style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); padding: 2px; border-radius: 12px;">
-    
-    <!-- Card interna con fondo sólido -->
-    <div class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]" 
-         style="border-radius: 9px;">
-      
-      <div class="flex-shrink-0">
-        {% if docente.foto %}
-          <img src="{{ docente.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
-        {% else %}
-          <img src="{% static 'students.jpg' %}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
-        {% endif %}
-      </div>
-      
-      <div class="flex flex-col items-center text-center">
-        <div>
-          <h4 class="font-bold text-base text-white">{{ docente.nombre }}</h4>
-          <p class="text-white italic">{{ docente.profesion }}</p>
-        </div>
-      </div>
-      
+      <div class="bar"></div>
     </div>
-  </div>
-</div>
 
-              {% endfor %}
-            </div>
-            
-            <!-- Duplicado para scroll infinito -->
-            <div class="flex flex-nowrap gap-4">
-              {% for docente in docentes %}
-<!-- Testimonio dinámico duplicado -->
-<div class="flex-shrink-0 w-96 px-4">
-  
-  <!-- Contenedor con gradiente -->
-  <div style="background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%); padding: 2px; border-radius: 12px;">
-    
-    <!-- Card interna con fondo sólido -->
-    <div class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]" 
-         style="border-radius: 9px;">
-      
-      <div class="flex-shrink-0">
-        {% if docente.foto %}
-          <img src="{{ docente.foto.url }}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
-        {% else %}
-          <img src="{% static 'students.jpg' %}" class="w-24 h-24 rounded-full object-cover" alt="{{ docente.nombre }}">
-        {% endif %}
-      </div>
-      
-      <div class="flex flex-col items-center text-center">
-        <div>
-          <h4 class="font-bold text-base text-white">{{ docente.nombre }}</h4>
-          <p class="text-white italic">{{ docente.profesion }}</p>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
+    <div class="relative overflow-hidden">
+      <div class="flex animate-scroll">
+        <div class="flex flex-nowrap gap-4">
+          {% for docente in docentes %}
+          <!-- Testimonio dinámico -->
+          <!-- Testimonio dinámico duplicado -->
+          <div class="flex-shrink-0 w-96 px-4">
+            <!-- Contenedor con gradiente -->
+            <div
+              style="
+                background: linear-gradient(90deg, #0068ff 0%, #00d2ff 100%);
+                padding: 2px;
+                border-radius: 12px;
+              "
+            >
+              <!-- Card interna con fondo sólido -->
+              <div
+                class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]"
+                style="border-radius: 9px"
+              >
+                <div class="flex-shrink-0">
+                  {% if docente.foto %}
+                  <img
+                    src="{{ docente.foto.url }}"
+                    class="w-24 h-24 rounded-full object-cover"
+                    alt="{{ docente.nombre }}"
+                  />
+                  {% else %}
+                  <img
+                    src="{% static 'students.jpg' %}"
+                    class="w-24 h-24 rounded-full object-cover"
+                    alt="{{ docente.nombre }}"
+                  />
+                  {% endif %}
+                </div>
 
-
-              {% endfor %}
+                <div class="flex flex-col items-center text-center">
+                  <div>
+                    <h4 class="font-bold text-base text-white">
+                      {{ docente.nombre }}
+                    </h4>
+                    <p class="text-white italic">{{ docente.profesion }}</p>
+                    <div class="flex gap-2 items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="19"
+                        height="18"
+                        viewBox="0 0 19 18"
+                        fill="none"
+                      >
+                        <circle
+                          cx="9.49902"
+                          cy="8.99902"
+                          r="8.66699"
+                          fill="url(#paint0_linear_781_3764)"
+                        />
+                        <path
+                          d="M9.49945 7.80888C11.6112 7.80888 13.3231 7.23824 13.3231 6.53432C13.3231 5.8304 11.6112 5.25977 9.49945 5.25977C7.3877 5.25977 5.67578 5.8304 5.67578 6.53432C5.67578 7.23824 7.3877 7.80888 9.49945 7.80888Z"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.67578 6.53516V12.4831C5.67578 12.8211 6.07863 13.1453 6.79571 13.3843C7.51279 13.6234 8.48535 13.7577 9.49945 13.7577C10.5136 13.7577 11.4861 13.6234 12.2032 13.3843C12.9203 13.1453 13.3231 12.8211 13.3231 12.4831V6.53516"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.67578 9.50977C5.67578 9.8478 6.07863 10.172 6.79571 10.411C7.51279 10.65 8.48535 10.7843 9.49945 10.7843C10.5136 10.7843 11.4861 10.65 12.2032 10.411C12.9203 10.172 13.3231 9.8478 13.3231 9.50977"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_781_3764"
+                            x1="0.832031"
+                            y1="8.99902"
+                            x2="18.166"
+                            y2="8.99902"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#0068FF" />
+                            <stop offset="1" stop-color="#00D2FF" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-white italic">
+                        {{ docente.especialidad }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          {% endfor %}
+        </div>
+        <!-- Duplicado para scroll infinito -->
+        <div class="flex flex-nowrap gap-4">
+          {% for docente in docentes %}
+          <!-- Testimonio dinámico duplicado -->
+          <div class="flex-shrink-0 w-96 px-4">
+            <!-- Contenedor con gradiente -->
+            <div
+              style="
+                background: linear-gradient(90deg, #0068ff 0%, #00d2ff 100%);
+                padding: 2px;
+                border-radius: 12px;
+              "
+            >
+              <!-- Card interna con fondo sólido -->
+              <div
+                class="text-white py-6 px-4 h-full flex flex-col items-center justify-center gap-4 bg-[#032744]"
+                style="border-radius: 9px"
+              >
+                <div class="flex-shrink-0">
+                  {% if docente.foto %}
+                  <img
+                    src="{{ docente.foto.url }}"
+                    class="w-24 h-24 rounded-full object-cover"
+                    alt="{{ docente.nombre }}"
+                  />
+                  {% else %}
+                  <img
+                    src="{% static 'students.jpg' %}"
+                    class="w-24 h-24 rounded-full object-cover"
+                    alt="{{ docente.nombre }}"
+                  />
+                  {% endif %}
+                </div>
+
+                <div class="flex flex-col items-center text-center">
+                  <div>
+                    <h4 class="font-bold text-base text-white">
+                      {{ docente.nombre }}
+                    </h4>
+                    <p class="text-white italic">{{ docente.profesion }}</p>
+                    <div class="flex gap-2 items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="19"
+                        height="18"
+                        viewBox="0 0 19 18"
+                        fill="none"
+                      >
+                        <circle
+                          cx="9.49902"
+                          cy="8.99902"
+                          r="8.66699"
+                          fill="url(#paint0_linear_781_3764)"
+                        />
+                        <path
+                          d="M9.49945 7.80888C11.6112 7.80888 13.3231 7.23824 13.3231 6.53432C13.3231 5.8304 11.6112 5.25977 9.49945 5.25977C7.3877 5.25977 5.67578 5.8304 5.67578 6.53432C5.67578 7.23824 7.3877 7.80888 9.49945 7.80888Z"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.67578 6.53516V12.4831C5.67578 12.8211 6.07863 13.1453 6.79571 13.3843C7.51279 13.6234 8.48535 13.7577 9.49945 13.7577C10.5136 13.7577 11.4861 13.6234 12.2032 13.3843C12.9203 13.1453 13.3231 12.8211 13.3231 12.4831V6.53516"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.67578 9.50977C5.67578 9.8478 6.07863 10.172 6.79571 10.411C7.51279 10.65 8.48535 10.7843 9.49945 10.7843C10.5136 10.7843 11.4861 10.65 12.2032 10.411C12.9203 10.172 13.3231 9.8478 13.3231 9.50977"
+                          stroke="black"
+                          stroke-width="1.01965"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_781_3764"
+                            x1="0.832031"
+                            y1="8.99902"
+                            x2="18.166"
+                            y2="8.99902"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#0068FF" />
+                            <stop offset="1" stop-color="#00D2FF" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-white italic">
+                        {{ docente.especialidad }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-
-    
 <style>
   @keyframes scroll {
     0% {
@@ -109,22 +235,21 @@
   }
 
   .hide-scrollbar {
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
-}
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none; 
-}
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-.neon-text {
-  color: transparent;
-  text-align: center;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #00E7FF;
-  font-style: italic;
-  font-weight: 700;
-  line-height: 1.25; /* 125% */
-}
-
+  .neon-text {
+    color: transparent;
+    text-align: center;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #00e7ff;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.25; /* 125% */
+  }
 </style>

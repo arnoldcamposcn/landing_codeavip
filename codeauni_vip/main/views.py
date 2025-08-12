@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import Docente, HistoriaVideo, Estudiantes, DocenteBusiness, EstudiantesBusiness,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
-from packages_business.models import TemaBusiness, CursoBusiness, Temario as TemarioBusiness
-from packages.models import Tema, Curso, Temario as TemarioNormal
+from .models import Docente, Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
+from packages.models import Tema, Curso, Temario as TemarioNormal, TipoContenido
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core.mail import send_mail
@@ -12,17 +11,26 @@ import json
 
 def home(request):
     docentes = Docente.objects.all()
-    videos = HistoriaVideo.objects.exclude(reel__isnull=True).exclude(reel__exact='')
-    estudiantes = Estudiantes.objects.all()
+    estudiantes = Clientes.objects.all()
     cursos = Curso.objects.all()
     temas = Tema.objects.all()
 
-    capitulos_ondemand = Curso.objects.filter(tipo_entrega='ondemand')
-    capitulos_envivo = Curso.objects.filter(tipo_entrega='envivo')
+    capitulos_ondemand = (
+        Curso.objects.filter(
+            tipo_entrega='ondemand',
+            mostrar_en_vip=True  # Solo mostrar los marcados como VIP
+        ).select_related('tipo_contenido', 'tema')
+    )
+
+    capitulos_envivo = (
+        Curso.objects.filter(
+            tipo_entrega='envivo',
+            mostrar_en_vip=True  # Solo mostrar los marcados como VIP
+        ).select_related('tipo_contenido', 'tema')
+    )
 
     return render(request, 'home.html', {
         'docentes': docentes,
-        'videos': videos,
         'estudiantes': estudiantes,
         'temas': temas,
         'capitulos_ondemand': capitulos_ondemand,
@@ -32,16 +40,27 @@ def home(request):
 
 
 def business(request):
-    docentes = DocenteBusiness.objects.all()
+    docentes = Docente.objects.all()
     videos = HistoriaVideoBusiness.objects.exclude(reel__isnull=True).exclude(reel__exact='')
-    estudiantes = EstudiantesBusiness.objects.all()
-    cursos = CursoBusiness.objects.all()
+    estudiantes = Clientes.objects.all()
+    cursos = Tema.objects.all()
 
-    temas = TemaBusiness.objects.all()
+    temas = Tema.objects.all()
     marcas = marcas_bussines.objects.all()
 
-    capitulos_ondemand = CursoBusiness.objects.filter(tipo_entrega='ondemand')
-    capitulos_envivo = CursoBusiness.objects.filter(tipo_entrega='envivo')
+    capitulos_ondemand = (
+        Curso.objects.filter(
+            tipo_entrega='ondemand',
+            mostrar_en_business=True 
+        ).select_related('tipo_contenido', 'tema')
+    )
+
+    capitulos_envivo = (
+        Curso.objects.filter(
+            tipo_entrega='envivo',
+            mostrar_en_business=True  
+        ).select_related('tipo_contenido', 'tema')
+    )
 
     return render(request, 'pages/bussines.html', {
         'docentes': docentes,
@@ -55,8 +74,6 @@ def business(request):
     })
 
 
-
-
 def ponents(request):
     docentes = Docente.objects.all()
     return render(request, 'ponents.html', {
@@ -65,16 +82,15 @@ def ponents(request):
 
 
 
-
-
-
 def syllabus(request, curso_id):
-    curso = get_object_or_404(Curso, id=curso_id)
+    curso = get_object_or_404(
+        Curso.objects.select_related('tema'),  # Agregamos select_related para optimizar
+        id=curso_id
+    )
+    temarios = TemarioNormal.objects.filter(
+        curso=curso
+    ).select_related('tipo_modulo').order_by('tipo_modulo')
 
-    # Filtrar solo los temarios de ese curso
-    temarios = TemarioNormal.objects.filter(curso=curso).order_by('tipo_modulo', 'orden')
-
-    # Agrupar temarios por tipo de módulo
     modulos = {}
     for temario in temarios:
         modulo_key = temario.tipo_modulo
@@ -89,14 +105,16 @@ def syllabus(request, curso_id):
 
 
 
-
 def syllabus_bussines(request, curso_id):
-    curso = get_object_or_404(CursoBusiness, id=curso_id)
+    curso = get_object_or_404(
+        Curso.objects.select_related('tema'),  # Agregamos select_related para optimizar
+        id=curso_id
+    )
 
-    # Filtrar solo los temarios de ese curso
-    temarios = TemarioBusiness.objects.filter(curso=curso).order_by('tipo_modulo', 'orden')
+    temarios = TemarioNormal.objects.filter(
+        curso=curso
+    ).select_related('tipo_modulo').order_by('tipo_modulo')
 
-    # Agrupar temarios por tipo de módulo
     modulos = {}
     for temario in temarios:
         modulo_key = temario.tipo_modulo
@@ -108,7 +126,6 @@ def syllabus_bussines(request, curso_id):
         'modulos': modulos,
         'curso': curso,
     })
-
 
 
 

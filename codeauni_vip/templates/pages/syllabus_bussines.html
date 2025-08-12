@@ -6,26 +6,35 @@
 
 {% block content %}
 
-<div class="h-[400px] relative overflow-hidden px-4 xl:px-0">
+<div class="h-[400px] md:h-[500px] lg:h-[500px] relative overflow-hidden px-4 xl:px-0">
     {% include 'components/header.html' %}
-          <img 
-          src="https://images.ctfassets.net/17si5cpawjzf/58pzkvRs2mloOfmRKo3Tbr/252e57dfa13b69602c094c098d55c198/realize-live-tony-hemmelgarn-siemens-keynote-1200x600.jpg" 
-          alt="Background Cover" 
-          class="absolute top-0 left-0 w-full h-full object-cover object-center blur-sm z-[-2]"/>
-      
-        <div class="flex flex-col items-center justify-center h-full text-center">
-          <!-- Título principal arriba -->
-          <div class="mb-0"> 
-            <h1 class="text-white text-4xl font-bold">Conoce el temario completo</h1>
-          </div>
-          
-          <!-- Navegación abajo -->
-        
-        </div>
-    <div class="absolute top-0 left-0 w-full h-full bg-black/55 z-[-1]">
-      <!-- Contenido centrado -->
+    <div class="absolute inset-0 z-[-2]">
+        {% if curso.tema.portada %}
+            <img 
+                src="{{ curso.tema.portada.url }}" 
+                alt="Portada de {{ curso.titulo }}" 
+                class="w-full h-full object-cover object-center"
+            />
+        {% else %}
+            <img 
+                src="{% static 'img/default-cover.jpg' %}" 
+                alt="Portada por defecto" 
+                class="w-full h-full object-cover object-center"
+            />
+        {% endif %}
     </div>
-  </div>
+
+    <!-- Capa de blur separada -->
+    <div class="absolute inset-0 backdrop-brightness-50 z-[-1]"></div>
+    
+    <div class="flex flex-col items-center justify-center h-full text-center relative z-10">
+        <div class="mb-0"> 
+            <h1 class="text-white text-3xl md:text-4xl lg:text-4xl font-bold">
+                Conoce el temario completo
+            </h1>
+        </div>
+    </div>
+</div>
 
 <div class="bg-gray-900 text-white min-h-screen">
     <div class="bg-slate-800 border-b border-slate-700">
@@ -42,17 +51,17 @@
         </div>
     </div>
 
-    <div class="mx-auto max-w-screen-xl px-8 py-16">
+    <div class="mx-auto max-w-screen-xl px-4 py-10 md:py-14 lg:py-16">
         {% for modulo_key, temarios in modulos.items %}
         <!-- Módulo {{ forloop.counter }} -->
         <div class="">
             <!-- Module Header -->
             <div class="bg-blue-600 px-8 py-6">
-                <h2 class="text-2xl font-bold text-white">{{ temarios.0.get_tipo_modulo_display }}</h2>
+                <h2 class="text-2xl font-bold text-white">{{ modulo_key.nombre }}</h2>
             </div>
 
             <!-- Module Content -->
-            <div class="bg-slate-800 rounded-b-lg px-8 py-8">
+            <div class="bg-slate-800 rounded-b-lg px-4 md:px-8 lg:px-8 py-8">
                 <!-- Timeline Container -->
                 <div class="relative">
                     <!-- Vertical Line -->
@@ -64,7 +73,7 @@
                         <!-- Item {{ forloop.counter }} -->
                         <div class="relative flex items-start">
                             <div class="absolute left-0 w-6 h-6 bg-blue-500 rounded-full timeline-dot"></div>
-                            <div class="ml-12 flex-1">
+                            <div class="ml-10 md:ml-10 lg:ml-12 flex-1">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <h3 class="text-lg font-semibold text-white mb-2">

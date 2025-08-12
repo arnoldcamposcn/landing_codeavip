@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'theme',
     'main',
     'packages',
-    'packages_business',
 ]
 
 MIDDLEWARE = [

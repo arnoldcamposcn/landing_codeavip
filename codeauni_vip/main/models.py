@@ -4,59 +4,43 @@ from django.db import models
 class Docente(models.Model):
     nombre = models.CharField(max_length=100, blank=True, null=True)
     profesion = models.CharField(max_length=100, blank=True, null=True)
+    especialidad = models.CharField(max_length=100, blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     foto = models.ImageField(upload_to='docentes/', blank=True)
 
     def __str__(self):
         return self.nombre or "Sin nombre"
     
+    class Meta:
+        verbose_name = "docentes"
+        verbose_name_plural = "docentes"
+    
 
-class Estudiantes(models.Model):
+class Clientes(models.Model):
     nombre = models.CharField(max_length=100, blank=True, null=True)
     descripcion = models.CharField(max_length=100, blank=True, null=True)
     profesion = models.CharField(max_length=100, blank=True, null=True)
-    foto = models.ImageField(upload_to='estudiantes/', blank=True)
-
-    def __str__(self):
-        return self.nombre or "Sin nombre"
-
-
-class HistoriaVideo(models.Model):
-    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)
-    video = models.FileField("Video", upload_to='historias/', blank=True, null=True)
-    reel = models.URLField("Enlace al Reel", blank=True, null=True)
-
-    def __str__(self):
-        return self.nombre or "Sin nombre"
-
-
-class DocenteBusiness(models.Model):
-    nombre = models.CharField(max_length=100, blank=True, null=True)
-    profesion = models.CharField(max_length=100, blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
-    foto = models.ImageField(upload_to='docentes/', blank=True)
-
-    def __str__(self):
-        return self.nombre or "Sin nombre"
-
-
-class EstudiantesBusiness(models.Model):
-    nombre = models.CharField(max_length=100, blank=True, null=True)
-    descripcion = models.CharField(max_length=100, blank=True, null=True)
-    profesion = models.CharField(max_length=100, blank=True, null=True)
-    foto = models.ImageField(upload_to='estudiantes/', blank=True)
+    foto = models.ImageField(upload_to='clientes/', blank=True)
 
     def __str__(self):
         return self.nombre or "Sin nombre"
     
+    class Meta:
+        verbose_name = "clientes"
+        verbose_name_plural = "clientes"
+
 
 class HistoriaVideoBusiness(models.Model):
-    nombre = models.CharField("Nombre", max_length=200, blank=True, null=True)
     video = models.FileField("Video", upload_to='historias/', blank=True, null=True)
     reel = models.URLField("Enlace al Reel", blank=True, null=True)
 
     def __str__(self):
-        return self.nombre or "Sin nombre"
+        return f"HistoriaVideoBusiness #{self.id}"
+    
+    class Meta:
+        verbose_name = "Historia_videos_business"
+        verbose_name_plural = "Historia_videos_business"
+
 
 
 class marcas_bussines(models.Model):

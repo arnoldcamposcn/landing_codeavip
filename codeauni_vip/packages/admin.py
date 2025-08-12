@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tema, Curso, Temario
+from .models import Tema, Curso, Temario, TipoContenido, TipoModulo
 
 @admin.register(Tema)
 class TemaAdmin(admin.ModelAdmin):
@@ -7,18 +7,31 @@ class TemaAdmin(admin.ModelAdmin):
     search_fields = ('titulo',)
 
 
+
+@admin.register(TipoContenido)
+class TipoContenidoAdmin(admin.ModelAdmin):
+    list_display = ('nombre',)
+    search_fields = ('nombre',)
+
+
+
 @admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'tema', 'tipo_entrega', 'tipo_contenido')
+    list_display = ('titulo', 'tema', 'tipo_entrega', 'tipo_contenido', 'mostrar_en_vip', 'mostrar_en_business')
     search_fields = ('titulo',)
-    list_filter = ('tema', 'tipo_entrega', 'tipo_contenido')
+    list_filter = ('tema', 'tipo_entrega', 'tipo_contenido', 'mostrar_en_vip', 'mostrar_en_business')
 
     class Media:
         js = ('js/conditional_fields_chapter.js',) 
+        
 
 
 @admin.register(Temario)
 class TemarioAdmin(admin.ModelAdmin):
-    list_display = ('curso', 'capitulo', 'tipo_modulo', 'orden')
+    list_display = ('capitulo', 'curso', 'tipo_modulo')
     list_filter = ('curso', 'tipo_modulo')
-    search_fields = ('capitulo', 'descripcion')
+
+
+@admin.register(TipoModulo)
+class TipoModuloAdmin(admin.ModelAdmin):
+    list_display = ('nombre',)
