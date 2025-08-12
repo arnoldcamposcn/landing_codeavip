@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Docente, Clientes,HistoriaVideoBusiness, marcas_bussines
+from .models import MembresiaVIP, Docente, Clientes,HistoriaVideoBusiness, marcas_bussines
 
 
 @admin.register(Docente)
@@ -20,3 +20,16 @@ class HistoriaVideoAdmin(admin.ModelAdmin):
 @admin.register(marcas_bussines)
 class marcas_bussinesAdmin(admin.ModelAdmin):
     list_display = ('imagen',)  
+
+
+
+@admin.register(MembresiaVIP)
+class MembresiaVIPAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'precio', 'descuento', 'precio_final_display')
+    list_filter = ('descuento',)
+    search_fields = ('nombre', 'beneficios')
+
+    def precio_final_display(self, obj):
+        """Muestra el precio final en el admin."""
+        return f"${obj.precio_final:.2f}"
+    precio_final_display.short_description = 'Precio Final'

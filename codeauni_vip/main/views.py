@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import Docente, Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
+from .models import Docente, MembresiaVIP, Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
 from packages.models import Tema, Curso, Temario as TemarioNormal, TipoContenido
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -14,6 +14,8 @@ def home(request):
     estudiantes = Clientes.objects.all()
     cursos = Curso.objects.all()
     temas = Tema.objects.all()
+    membresias = MembresiaVIP.objects.all().order_by('precio')
+
 
     capitulos_ondemand = (
         Curso.objects.filter(
@@ -36,6 +38,7 @@ def home(request):
         'capitulos_ondemand': capitulos_ondemand,
         'capitulos_envivo': capitulos_envivo,
         'cursos': cursos,
+        'membresias': membresias,
     })
 
 

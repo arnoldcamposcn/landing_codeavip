@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal
 
 # Create your models here.
 class Docente(models.Model):
@@ -127,3 +128,37 @@ class membresia_free_bussines(models.Model):
         return f"{self.nombre_empresa} - {self.nombre_encargado}"
 
 
+
+class MembresiaVIP(models.Model):
+    DESCUENTO_CHOICES = [
+        ('', 'Sin descuento'),
+        ('10', '10%'),
+        ('20', '20%'),
+    ]
+
+    nombre = models.CharField("Nombre de la membresía", max_length=100)
+    precio = models.DecimalField("Precio base", max_digits=10, decimal_places=2)
+    beneficios = models.TextField("Beneficios", help_text="Lista de beneficios, separados por saltos de línea.")
+    descuento = models.CharField(
+        "Descuento",
+        max_length=2,
+        choices=DESCUENTO_CHOICES,
+        blank=True,
+        null=True
+    )
+    oferta = models.CharField("Oferta especial", max_length=100, blank=True, null=True, help_text="Ej: Descuento, Black Friday, etc.")
+
+    @property
+    def precio_final(self):
+        """Calcula el precio con el descuento aplicado."""
+        if self.descuento:
+            porcentaje = Decimal(self.descuento) / Decimal(100)
+            return self.precio * (Decimal(1) - porcentaje)
+        return self.precio
+
+    def __str__(self):
+        return f"{self.nombre} - ${self.precio_final:.2f}"
+
+    class Meta:
+        verbose_name = "Membresía VIP"
+        verbose_name_plural = "Membresías VIP"

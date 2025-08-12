@@ -572,16 +572,18 @@
        
        <!-- Contenedor de las 2 cards -->
        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-         
+      {% for membresia in membresias %}
+         {% if membresia.nombre == "ESTUDIANTES" %}
          <!-- Card 1: ESTUDIANTES -->
          <div class="relative flex flex-col h-full rounded-3xl bg-black border-2" style="border: 1px solid var(--Gold, #8C7000);">
            <!-- Header con oferta -->
+           
      <div class=" text-white text-center py-4 px-4 rounded-t-3xl" style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));">
              <span class="text-base font-bold"></span>
            </div>
            <div class="py-8 px-10">
            <!-- Título -->
-           <h3 class="text-2xl font-bold text-white text-center mb-2">ESTUDIANTES</h3>
+           <h3 class="text-2xl font-bold text-white text-center mb-2">{{ membresia.nombre }}</h3>
            <div class="max-w-40 h-px bg-white mx-auto mb-6"></div>
            
            <!-- Precio -->
@@ -592,7 +594,7 @@
              </div>
 
              <div class="flex items-center gap-1">
-               <span class="text-6xl font-bold text-white">149.90</span>
+               <span class="text-6xl font-bold text-white">{{ membresia.precio_final|floatformat:2 }}</span>
                <div class="flex flex-col items-center gap-1">
                <span class="text-white text-sm">/año</span>
                </div>
@@ -603,6 +605,8 @@
            
            <!-- Lista de características -->
            <ul class="space-y-4 mb-2 flex-1 text-white">
+             {% for beneficio in membresia.beneficios.splitlines %}
+             {% if beneficio %}
             <li class="flex items-center space-x-3 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
               <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
@@ -613,87 +617,30 @@
                   </linearGradient>
               </defs>
               </svg>
-              <span class="text-[15px]">Acceso completo al paquete de actualización tecnológica</span>
+              <span class="text-[15px]">{{ beneficio }}</span>
             </li>
-            <li class="flex items-center space-x-3 ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">Certificaciones, mentorías personalizadas y talleres</span>
-            </li>
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">Pay-Per-Use para cursos adicionales</span>
-            </li>
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">15% de ahorro en cursos adicionales</span>
-            </li>
-
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">+6 meses adicionales por tiempo limitado</span>
-            </li>
-            
-            
+            {% endif %}
+            {% endfor %}
            </ul>
 
   <!-- Métodos de pago -->
        <div class="flex justify-center items-center gap-1 py-6">
-  <!-- Columna 1 -->
-  <div class="flex flex-col items-center flex-1">
-    <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
-    <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
-
-  </div>
-
-  <!-- Columna 2 -->
-  <div class="flex flex-col items-center gap-2 flex-1">
-    <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
-    <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
-  </div>
-</div>
-
+        <!-- Columna 1 -->
+        <div class="flex flex-col items-center flex-1">
+          <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
+          <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
+        </div>
+        <!-- Columna 2 -->
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
+          <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
+        </div>
+      </div>
            <div class="flex flex-col gap-4 justify-center items-center">
            <div class="w-64 flex flex-col gap-4 justify-center items-center">
-
               <button onclick="openFormFree()"class="text-white font-semibold py-3 px-10 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
                  Prueba gratuita
                </button>
-
                <button onclick="openFormPayment()" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
                  Comprar
                </button>
@@ -701,28 +648,35 @@
            </div>
          </div>
          </div>
-         
-              <!-- Card 1: ESTUDIANTES -->
+         {% endif%}
+         {% endfor%}
+
+
+
+
+          {% for membresia in membresias %}
+         {% if membresia.nombre == "PROFESIONALES" %}
+         <!-- Card 1: ESTUDIANTES -->
          <div class="relative flex flex-col h-full rounded-3xl bg-black border-2" style="border: 1px solid var(--Gold, #8C7000);">
            <!-- Header con oferta -->
+           
      <div class=" text-white text-center py-4 px-4 rounded-t-3xl" style="background: var(--Gold, linear-gradient(180deg, #8C7000 0%, #CE9E00 51.92%, #FC0 100%));">
              <span class="text-base font-bold"></span>
            </div>
            <div class="py-8 px-10">
            <!-- Título -->
-           <h3 class="text-2xl font-bold text-white text-center mb-2">PROFESIONALES</h3>
-           <div class="max-w-48 h-px bg-white mx-auto mb-6"></div>
+           <h3 class="text-2xl font-bold text-white text-center mb-2">{{ membresia.nombre }}</h3>
+           <div class="max-w-40 h-px bg-white mx-auto mb-6"></div>
            
            <!-- Precio -->
            <div class="text-center mb-8 flex justify-center gap-2 items-center">
              <div class="flex flex-col items-center">
                <span class="text-lg font-bold text-white">US$</span>
-               <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">37% OFF</span>
-
+               <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">{membresia.oferta}</span>
              </div>
 
              <div class="flex items-center gap-1">
-               <span class="text-6xl font-bold text-white">249.90</span>
+               <span class="text-6xl font-bold text-white">{{ membresia.precio_final|floatformat:2 }}</span>
                <div class="flex flex-col items-center gap-1">
                <span class="text-white text-sm">/año</span>
                </div>
@@ -731,9 +685,10 @@
            </div>
 
            
-           
            <!-- Lista de características -->
            <ul class="space-y-4 mb-2 flex-1 text-white">
+             {% for beneficio in membresia.beneficios.splitlines %}
+             {% if beneficio %}
             <li class="flex items-center space-x-3 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
               <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
@@ -744,117 +699,47 @@
                   </linearGradient>
               </defs>
               </svg>
-              <span class="text-[15px]">Acceso completo al paquete de actualización tecnológica</span>
+              <span class="text-[15px]">{{ beneficio }}</span>
             </li>
-            <li class="flex items-center space-x-3   ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">Certificaciones, mentorías personalizadas y talleres</span>
-            </li>
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">Pay-Per-Use para cursos adicionales</span>
-            </li>
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">15% de ahorro en cursos adicionales</span>
-            </li>
-
-
-            <li class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5" viewBox="0 0 21 18" fill="none">
-              <path d="M12.5 0C10.3783 0 8.34344 0.842855 6.84315 2.34315C5.34285 3.84344 4.5 5.87827 4.5 8C4.5 10.1217 5.34285 12.1566 6.84315 13.6569C8.34344 15.1571 10.3783 16 12.5 16C14.6217 16 16.6566 15.1571 18.1569 13.6569C19.6571 12.1566 20.5 10.1217 20.5 8C20.5 5.87827 19.6571 3.84344 18.1569 2.34315C16.6566 0.842855 14.6217 0 12.5 0ZM3.43 3.82C1.58 5.34 0.5 7.61 0.5 10C0.5 12.1217 1.34285 14.1566 2.84315 15.6569C4.34344 17.1571 6.37827 18 8.5 18C9.14 18 9.77 17.92 10.38 17.77C8.62 17.38 7 16.5 5.67 15.29C3.72 14.25 2.5 12.21 2.5 10C2.5 9.7 2.53 9.41 2.57 9.11C2.53 8.74 2.5 8.37 2.5 8C2.5 6.56 2.82 5.13 3.43 3.82ZM16.59 4.08L18 5.5L11.5 12L7.71 8.21L9.13 6.79L11.5 9.17" fill="url(#paint0_linear_98_982)"/>
-              <defs>
-                  <linearGradient id="paint0_linear_98_982" x1="0.5" y1="9" x2="20.5" y2="9" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0068FF"/>
-                  <stop offset="1" stop-color="#00D2FF"/>
-                  </linearGradient>
-              </defs>
-              </svg>
-              <span class="text-[15px]">+6 meses adicionales por tiempo limitado</span>
-            </li>
-            
-            
+            {% endif %}
+            {% endfor %}
            </ul>
 
-       <!-- Métodos de pago -->
+      <!-- Métodos de pago -->
        <div class="flex justify-center items-center gap-1 py-6">
-       <!-- Columna 1 -->
-      <div class="flex flex-col items-center flex-1">
-        <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
-        <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
-
-      </div>
-
+        <!-- Columna 1 -->
+        <div class="flex flex-col items-center flex-1">
+          <img src="{% static 'paypal.svg' %}" alt="PayPal" class="h-8 md:h-10">
+          <img src="{% static 'Bitcoin.svg' %}" alt="Bitcoin" class="h-8 md:h-10">
+        </div>
         <!-- Columna 2 -->
         <div class="flex flex-col items-center gap-2 flex-1">
           <img src="{% static 'icon-wester.png' %}" alt="Western Union" class="h-8 md:h-10">
           <img src="{% static 'Visa_Logo.png' %}" alt="Visa" class="h-8 md:h-10">
         </div>
-      </div>
-
-           <!-- Botones -->
+         </div>
            <div class="flex flex-col gap-4 justify-center items-center">
-          <div class="w-64 flex flex-col gap-4 justify-center items-center">
-               <button onclick="openFormFree()" class="text-white font-semibold py-3 px-10 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
+           <div class="w-64 flex flex-col gap-4 justify-center items-center">
+              <button onclick="openFormFree()"class="text-white font-semibold py-3 px-10 text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer" style="border-radius: 7px; background: linear-gradient(90deg, #0068FF 0%, #00D2FF 100%);" onmouseover="this.style.background='linear-gradient(90deg, #0056CC 0%, #00B8E6 100%)'" onmouseout="this.style.background='linear-gradient(90deg, #0068FF 0%, #00D2FF 100%)'">
                  Prueba gratuita
                </button>
-
                <button onclick="openFormPayment('profesional')" class="bg-[#032744] text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer hover:bg-[#054a6b] hover:text-white" >
                  Comprar
                </button>
-
-
            </div>
            </div>
          </div>
          </div>
-
-
-
-
-         
-
+         {% endif%}
+         {% endfor%}
          
          </div>
          </div>
          </div>
          
 
-
-
-
-<div class="bg-hero">
-    {% include 'components/frequentlyfaq.html' %}
-</div>
-
-
-
+    <div class="bg-hero">
+        {% include 'components/frequentlyfaq.html' %}
+    </div>
     {% include 'components/footer.html' %}
-
 {% endblock %}
