@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import Docente, MembresiaVIP, Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
+from .models import datos_corporativos, Docente, MembresiaVIP,  Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
 from packages.models import Tema, Curso, Temario as TemarioNormal, TipoContenido
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -12,6 +12,7 @@ import json
 def home(request):
     docentes = Docente.objects.all()
     estudiantes = Clientes.objects.all()
+    corporativos = datos_corporativos.objects.all()
     cursos = Curso.objects.all()
     temas = Tema.objects.all()
     membresias = MembresiaVIP.objects.all().order_by('precio')
@@ -20,14 +21,14 @@ def home(request):
     capitulos_ondemand = (
         Curso.objects.filter(
             tipo_entrega='ondemand',
-            mostrar_en_vip=True  # Solo mostrar los marcados como VIP
+            mostrar_en_vip=True  
         ).select_related('tipo_contenido', 'tema')
     )
 
     capitulos_envivo = (
         Curso.objects.filter(
             tipo_entrega='envivo',
-            mostrar_en_vip=True  # Solo mostrar los marcados como VIP
+            mostrar_en_vip=True  
         ).select_related('tipo_contenido', 'tema')
     )
 
@@ -35,6 +36,7 @@ def home(request):
         'docentes': docentes,
         'historias_videos': historias_videos,
         'estudiantes': estudiantes,
+        'corporativos': corporativos,
         'temas': temas,
         'capitulos_ondemand': capitulos_ondemand,
         'capitulos_envivo': capitulos_envivo,

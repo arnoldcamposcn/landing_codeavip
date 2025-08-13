@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MembresiaVIP, Docente, Clientes,HistoriaVideoBusiness, marcas_bussines
+from .models import MembresiaVIP, Docente, Clientes,HistoriaVideoBusiness, marcas_bussines, datos_corporativos
 
 
 @admin.register(Docente)
@@ -25,3 +25,13 @@ class marcas_bussinesAdmin(admin.ModelAdmin):
 @admin.register(MembresiaVIP)
 class MembresiaVIPAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'precio', 'oferta', 'beneficios', 'etiqueta_cabecera')
+
+
+@admin.register(datos_corporativos)
+class DatosCorporativosAdmin(admin.ModelAdmin):
+    list_display = (
+        'numero_contenidos',
+        'numero_cursos',
+        'numero_profesionales',
+        'numero_empresas_lideres',
+    )

@@ -1,6 +1,7 @@
 from django.db import models
 from decimal import Decimal
 from django.core.exceptions import ValidationError
+from decimal import Decimal
 
 # Create your models here.
 class Docente(models.Model):
@@ -149,3 +150,38 @@ class MembresiaVIP(models.Model):
     class Meta:
         verbose_name = "Membresía VIP"
         verbose_name_plural = "Membresías VIP"
+
+
+
+class datos_corporativos(models.Model):
+    numero_contenidos = models.DecimalField(
+        "Número de contenidos", 
+        max_digits=10, 
+        decimal_places=3,
+        default=Decimal("0.000")
+    )
+    numero_cursos = models.DecimalField(
+        "Número de cursos", 
+        max_digits=10, 
+        decimal_places=3,
+        default=Decimal("0.000")
+    )
+    numero_profesionales = models.DecimalField(
+        "Número de profesionales", 
+        max_digits=15, 
+        decimal_places=3,
+        default=Decimal("0.000")
+    )
+    numero_empresas_lideres = models.DecimalField(
+        "Número de empresas líderes", 
+        max_digits=10, 
+        decimal_places=3,
+        default=Decimal("0.000")
+    )
+
+    class Meta:
+        verbose_name = "Datos corporativos"
+        verbose_name_plural = "Datos corporativos"
+
+    def __str__(self):
+        return "Datos corporativos"
