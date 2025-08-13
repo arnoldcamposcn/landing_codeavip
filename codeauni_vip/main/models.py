@@ -180,8 +180,8 @@ class datos_corporativos(models.Model):
     )
 
     class Meta:
-        verbose_name = "Datos corporativos"
-        verbose_name_plural = "Datos corporativos"
+        verbose_name = "Datos_corporativos"
+        verbose_name_plural = "Datos_corporativos"
 
     def __str__(self):
         return "Datos corporativos"
