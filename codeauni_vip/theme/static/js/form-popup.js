@@ -52,7 +52,7 @@ function openFormPayment(tipo = 'estudiante', precio_base) {
         <div class="space-y-3">
           ${datos.detalles.map((detalle, index) => `
             <label
-              class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 cursor-pointer text-center transition-all border-[#00D2FF]
+              class="relative flex flex-col justify-center items-center border-2 rounded-xl px-4 py-3 pb-6 cursor-pointer text-center transition-all border-[#00D2FF]
                      peer-checked:bg-blue-100 peer-checked:ring-2 peer-checked:ring-blue-300"
               :class="selectedPlan === '${index + 1}' ? 'bg-gradient-to-r from-[#0068FF] to-[#00D2FF] text-white ring-2 ring-[#7fd9ff]/60' : ''"
               @click="selectedPlan='${index + 1}'"
@@ -61,7 +61,7 @@ function openFormPayment(tipo = 'estudiante', precio_base) {
               <span class="text-[32px] font-bold leading-none">${index + 1} Membresía</span>
               <span class="text-[16px] font-medium" :class="selectedPlan === '${index + 1}' ? 'text-white/90' : 'text-gray-600'">CODEa VIP</span>
               ${index > 0 ? `
-                <span class="absolute bottom-2 right-2 bg-cyan-400 text-black text-xs font-semibold px-2 py-0.5 rounded-xl border border-black/20">
+                <span class="bg-[#00D2FF] text-black text-xs font-semibold px-2 py-0.5 rounded-xl border border-black/20 shadow-sm text-right pt-4">
                   ${index * 10}%Off
                 </span>` : ''}
             </label>
