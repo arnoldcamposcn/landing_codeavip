@@ -61,7 +61,7 @@ function openFormPayment(tipo = 'estudiante', precio_base) {
               <span class="text-[32px] font-bold leading-none">${index + 1} Membresía</span>
               <span class="text-[16px] font-medium" :class="selectedPlan === '${index + 1}' ? 'text-white/90' : 'text-gray-600'">CODEa VIP</span>
               ${index > 0 ? `
-                <span class="bg-[#00D2FF] text-black text-xs font-semibold px-2 py-0.5 rounded-xl border border-black/20 shadow-sm text-right pt-4">
+                <span class="bg-[#00D2FF] text-black text-xs font-semibold px-2 py-0.5 rounded-xl border border-black/20 shadow-sm text-right pt-6">
                   ${index * 10}%Off
                 </span>` : ''}
             </label>

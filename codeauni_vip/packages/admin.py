@@ -34,4 +34,4 @@ class TemarioAdmin(admin.ModelAdmin):
 
 @admin.register(TipoModulo)
 class TipoModuloAdmin(admin.ModelAdmin):
-    list_display = ('nombre','descripcion') 
+    list_display = ('nombre','descripcion','orden')     

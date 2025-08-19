@@ -49,36 +49,6 @@ def home(request):
     })
 
 
-
-def syllabus(request, curso_id):
-    curso = get_object_or_404(
-        Curso.objects.select_related('tema'), 
-        id=curso_id
-    )
-    temarios = TemarioNormal.objects.filter(
-        curso=curso
-    ).select_related('tipo_modulo').order_by('tipo_modulo')
-
-    modulos = {}
-    for temario in temarios:
-        modulo_key = temario.tipo_modulo
-        if modulo_key not in modulos:
-            modulos[modulo_key] = []
-        modulos[modulo_key].append(temario)
-
-    return render(request, 'syllabus.html', {
-        'modulos': modulos,
-        'curso': curso,
-    })
-
-
-
-
-
-
-
-
-
 def business(request):
     docentes = Docente.objects.all()
     historias_videos = HistoriaVideoBusiness.objects.all()
@@ -102,6 +72,13 @@ def business(request):
         ).select_related('tipo_contenido', 'tema')
     )
 
+    temarios_por_curso = defaultdict(list)
+    modulos_por_curso = defaultdict(set)
+
+    for temario in TemarioNormal.objects.select_related('curso', 'tipo_modulo'):
+        temarios_por_curso[temario.curso.id].append(temario)
+        modulos_por_curso[temario.curso.id].add(temario.tipo_modulo)
+
     return render(request, 'pages/bussines.html', {
         'docentes': docentes,
         'historias_videos': historias_videos,
@@ -111,6 +88,8 @@ def business(request):
         'capitulos_envivo': capitulos_envivo,
         'cursos': cursos,
         'marcas': marcas,
+        'temarios_por_curso': dict(temarios_por_curso),
+        'modulos_por_curso': {k: list(v) for k, v in modulos_por_curso.items()},
     })
 
 
@@ -122,6 +101,26 @@ def ponents(request):
 
 
 
+def syllabus(request, curso_id):
+    curso = get_object_or_404(
+        Curso.objects.select_related('tema'), 
+        id=curso_id
+    )
+    temarios = TemarioNormal.objects.filter(
+        curso=curso
+    ).select_related('tipo_modulo').order_by('tipo_modulo')
+
+    modulos = {}
+    for temario in temarios:
+        modulo_key = temario.tipo_modulo
+        if modulo_key not in modulos:
+            modulos[modulo_key] = []
+        modulos[modulo_key].append(temario)
+
+    return render(request, 'syllabus.html', {
+        'modulos': modulos,
+        'curso': curso,
+    })
 
 
 

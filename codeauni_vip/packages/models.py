@@ -113,6 +113,7 @@ class Curso(models.Model):
 class TipoModulo(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True, null=True)
+    orden = models.IntegerField(default=0)
 
 
     def __str__(self):

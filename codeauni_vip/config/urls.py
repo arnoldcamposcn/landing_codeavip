@@ -25,7 +25,6 @@ from main.views import home, ponents, business, syllabus_bussines, guardar_formu
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('curso/<int:curso_id>/', home, name='curso_home'),
     path('ponentes/', ponents, name='ponents'),
     path('business/', business, name='business'),
     path('temario/<int:curso_id>/', syllabus, name='syllabus'),
