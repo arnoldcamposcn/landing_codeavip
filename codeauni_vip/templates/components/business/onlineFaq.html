@@ -54,10 +54,13 @@
                 </div>
 
                 <!-- Caja de modulos -->
-                <div class="bg-slate-800 rounded-lg space-y-2 mt-3" x-show="showModules" x-collapse>
-                  <div class="py-4">
+
+                 <div class="py-4">
                     <p class="text-base text-gray-300">{{ curso.descripcion }}</p>
                   </div>
+
+                <div class="bg-slate-800 rounded-lg space-y-2 mt-3" x-show="showModules" x-collapse>
+                 
                   {% with modulos=modulos_por_curso|get_item:curso.id %}
                     {% if modulos %}
                     <div class="pb-0">
