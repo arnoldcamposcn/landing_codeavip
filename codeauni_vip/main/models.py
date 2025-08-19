@@ -44,7 +44,7 @@ class HistoriaVideoBusiness(models.Model):
         upload_to='historias/',
         blank=True,
         null=True,
-        validators=[validar_tamano_video]  # 👈 Aquí aplicamos el validador
+        validators=[validar_tamano_video] 
     )
 
     def __str__(self):

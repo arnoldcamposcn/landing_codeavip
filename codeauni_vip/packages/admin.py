@@ -28,10 +28,10 @@ class CursoAdmin(admin.ModelAdmin):
 
 @admin.register(Temario)
 class TemarioAdmin(admin.ModelAdmin):
-    list_display = ('capitulo', 'curso', 'tipo_modulo')
+    list_display = ('capitulo', 'curso', 'tipo_modulo', 'descripcion')
     list_filter = ('curso', 'tipo_modulo')
 
 
 @admin.register(TipoModulo)
 class TipoModuloAdmin(admin.ModelAdmin):
-    list_display = ('nombre',)
+    list_display = ('nombre','descripcion') 

@@ -70,6 +70,8 @@ class Curso(models.Model):
 
     titulo = models.CharField(max_length=200)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='cursos')
+    descripcion = models.TextField(blank=True, null=True)
+
     
     tipo_entrega = models.CharField(
         max_length=20,
@@ -94,7 +96,7 @@ class Curso(models.Model):
     )
 
     def __str__(self):
-        return f"{self.titulo} ({self.tema.titulo})"
+        return self.titulo
     
     
     mostrar_en_vip = models.BooleanField(
@@ -110,6 +112,8 @@ class Curso(models.Model):
 
 class TipoModulo(models.Model):
     nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(blank=True, null=True)
+
 
     def __str__(self):
         return self.nombre
@@ -130,4 +134,4 @@ class Temario(models.Model):
     )
 
     def __str__(self):
-        return f"{self.capitulo} ({self.tipo_modulo.nombre} - {self.curso.titulo})"
+        return self.capitulo

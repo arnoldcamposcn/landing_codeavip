@@ -1,48 +1,82 @@
 from django.shortcuts import render
+from collections import defaultdict
 from django.shortcuts import get_object_or_404
 from .models import datos_corporativos, Docente, MembresiaVIP,  Clientes,HistoriaVideoBusiness, membresia_estudiantes, prueba_gratuita_vip, membresia_profesionales, membresia_bussines, membresia_free_bussines, marcas_bussines
-from packages.models import Tema, Curso, Temario as TemarioNormal, TipoContenido
+from packages.models import Tema, Curso, Temario as TemarioNormal, TipoContenido, TipoModulo
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core.mail import send_mail
 import json
 
-# Create your views here.
 
 def home(request):
     docentes = Docente.objects.all()
     estudiantes = Clientes.objects.all()
     corporativos = datos_corporativos.objects.all()
-    cursos = Curso.objects.all()
     temas = Tema.objects.all()
+    capitulos_ondemand = Curso.objects.filter(
+        tipo_entrega='ondemand',
+        mostrar_en_vip=True  
+    ).select_related('tipo_contenido', 'tema')
+
+    capitulos_envivo = Curso.objects.filter(
+        tipo_entrega='envivo',
+        mostrar_en_vip=True  
+    ).select_related('tipo_contenido', 'tema')
+
     membresias = MembresiaVIP.objects.all().order_by('precio')
     historias_videos = HistoriaVideoBusiness.objects.all()
 
-    capitulos_ondemand = (
-        Curso.objects.filter(
-            tipo_entrega='ondemand',
-            mostrar_en_vip=True  
-        ).select_related('tipo_contenido', 'tema')
-    )
+    # Agrupar temarios y módulos por curso
+    temarios_por_curso = defaultdict(list)
+    modulos_por_curso = defaultdict(set)
 
-    capitulos_envivo = (
-        Curso.objects.filter(
-            tipo_entrega='envivo',
-            mostrar_en_vip=True  
-        ).select_related('tipo_contenido', 'tema')
-    )
+    for temario in TemarioNormal.objects.select_related('curso', 'tipo_modulo'):
+        temarios_por_curso[temario.curso.id].append(temario)
+        modulos_por_curso[temario.curso.id].add(temario.tipo_modulo)
 
     return render(request, 'home.html', {
         'docentes': docentes,
-        'historias_videos': historias_videos,
         'estudiantes': estudiantes,
         'corporativos': corporativos,
         'temas': temas,
         'capitulos_ondemand': capitulos_ondemand,
         'capitulos_envivo': capitulos_envivo,
-        'cursos': cursos,
         'membresias': membresias,
+        'historias_videos': historias_videos,
+        'temarios_por_curso': dict(temarios_por_curso),
+        'modulos_por_curso': {k: list(v) for k, v in modulos_por_curso.items()},
     })
+
+
+
+def syllabus(request, curso_id):
+    curso = get_object_or_404(
+        Curso.objects.select_related('tema'), 
+        id=curso_id
+    )
+    temarios = TemarioNormal.objects.filter(
+        curso=curso
+    ).select_related('tipo_modulo').order_by('tipo_modulo')
+
+    modulos = {}
+    for temario in temarios:
+        modulo_key = temario.tipo_modulo
+        if modulo_key not in modulos:
+            modulos[modulo_key] = []
+        modulos[modulo_key].append(temario)
+
+    return render(request, 'syllabus.html', {
+        'modulos': modulos,
+        'curso': curso,
+    })
+
+
+
+
+
+
+
 
 
 def business(request):
@@ -88,26 +122,7 @@ def ponents(request):
 
 
 
-def syllabus(request, curso_id):
-    curso = get_object_or_404(
-        Curso.objects.select_related('tema'),  # Agregamos select_related para optimizar
-        id=curso_id
-    )
-    temarios = TemarioNormal.objects.filter(
-        curso=curso
-    ).select_related('tipo_modulo').order_by('tipo_modulo')
 
-    modulos = {}
-    for temario in temarios:
-        modulo_key = temario.tipo_modulo
-        if modulo_key not in modulos:
-            modulos[modulo_key] = []
-        modulos[modulo_key].append(temario)
-
-    return render(request, 'syllabus.html', {
-        'modulos': modulos,
-        'curso': curso,
-    })
 
 
 
@@ -128,7 +143,7 @@ def syllabus_bussines(request, curso_id):
             modulos[modulo_key] = []
         modulos[modulo_key].append(temario)
 
-    return render(request, 'pages/syllabus_bussines.html', {
+    return render(request, 'home.html', {
         'modulos': modulos,
         'curso': curso,
     })

@@ -8,7 +8,11 @@ module.exports = {
     '../../packages/templates/**/*.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'azul-vip': '#0068FF',
+      },
+    },
   },
   daisyui: {
     themes: ["light", "dark"],
