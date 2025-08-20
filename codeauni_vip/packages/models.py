@@ -36,19 +36,10 @@ def validate_image_file(value):
 
 class Tema(models.Model):
     titulo = models.CharField(max_length=200)
-    portada = models.ImageField(
-        upload_to='portada/',
-        blank=True,
-        validators=[validate_image_file],
-        help_text="Formatos permitidos: JPG, JPEG, PNG, GIF, WebP. Tamaño máximo: 3MB"
-    )
 
     def __str__(self):
         return self.titulo
 
-
-    def __str__(self):
-        return self.titulo
 
 
 class Curso(models.Model):
@@ -111,13 +102,13 @@ class Curso(models.Model):
     
 
 class TipoModulo(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField(blank=True, null=True)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, null=True, blank=True)
+    nombre_modulo = models.CharField(max_length=100)
+    descripcion_modulo = models.TextField(blank=True, null=True)
     orden = models.IntegerField (blank=True, null=True, default=0)
 
-
     def __str__(self):
-        return self.nombre
+        return self.nombre_modulo
 
     class Meta:
         verbose_name = "crear_modulo"
@@ -126,13 +117,16 @@ class TipoModulo(models.Model):
 
 class Temario(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='temarios')
-    capitulo = models.CharField(max_length=255)
-    descripcion = models.TextField(blank=True)
     tipo_modulo = models.ForeignKey(
         TipoModulo,
         on_delete=models.CASCADE,
         related_name='temarios'
     )
+    descripcion = models.TextField(blank=True)
+    capitulo = models.CharField(max_length=255)
+
+    
+
 
     def __str__(self):
         return self.capitulo

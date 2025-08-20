@@ -325,3 +325,10 @@ def free_formulario_bussines(request):
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+
+
+def cargar_modulos(request):
+    curso_id = request.GET.get("curso_id")
+    modulos = TipoModulo.objects.filter(curso_id=curso_id).values("id", "nombre_modulo")
+    return JsonResponse(list(modulos), safe=False)

@@ -30,8 +30,11 @@ class CursoAdmin(admin.ModelAdmin):
 class TemarioAdmin(admin.ModelAdmin):
     list_display = ('capitulo', 'curso', 'tipo_modulo', 'descripcion')
     list_filter = ('curso', 'tipo_modulo')
+    
+    class Media:
+        js = ('js/temario_cascada.js',)
 
 
 @admin.register(TipoModulo)
 class TipoModuloAdmin(admin.ModelAdmin):
-    list_display = ('nombre','descripcion','orden')     
+    list_display = ('nombre_modulo','descripcion_modulo','orden', 'curso')     

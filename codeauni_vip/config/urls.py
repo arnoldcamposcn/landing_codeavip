@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path
-from main.views import home, ponents, business, syllabus_bussines, guardar_formulario, guardar_formulario_free, syllabus, guardar_formulario_profesional, guardar_formulario_bussines, free_formulario_bussines
+from main.views import home, cargar_modulos, ponents, business, syllabus_bussines, guardar_formulario, guardar_formulario_free, syllabus, guardar_formulario_profesional, guardar_formulario_bussines, free_formulario_bussines
+from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +30,7 @@ urlpatterns = [
     path('business/', business, name='business'),
     path('temario/<int:curso_id>/', syllabus, name='syllabus'),
     path('temario-business/<int:curso_id>/', syllabus_bussines, name='syllabus_bussines'),
-
+    path("ajax/cargar-modulos/", views.cargar_modulos, name="cargar_modulos"),
 
     path('api/guardar-formulario/', guardar_formulario, name='guardar_formulario'),
     path('api/guardar-formulario-profesional/', guardar_formulario_profesional, name='guardar_formulario-profesional'),
