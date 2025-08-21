@@ -27,13 +27,19 @@ def home(request):
     membresias = MembresiaVIP.objects.all().order_by('precio')
     historias_videos = HistoriaVideoBusiness.objects.all()
 
-    # Agrupar temarios y módulos por curso
     temarios_por_curso = defaultdict(list)
     modulos_por_curso = defaultdict(set)
+    capitulos_por_modulo = defaultdict(lambda: defaultdict(list))
 
     for temario in TemarioNormal.objects.select_related('curso', 'tipo_modulo'):
         temarios_por_curso[temario.curso.id].append(temario)
         modulos_por_curso[temario.curso.id].add(temario.tipo_modulo)
+        capitulos_por_modulo[temario.curso.id][temario.tipo_modulo.id].append(temario)
+
+    modulos_por_curso = {
+        k: sorted(list(v), key=lambda m: m.orden or 0)
+        for k, v in modulos_por_curso.items()
+    }
 
     return render(request, 'home.html', {
         'docentes': docentes,
@@ -45,7 +51,8 @@ def home(request):
         'membresias': membresias,
         'historias_videos': historias_videos,
         'temarios_por_curso': dict(temarios_por_curso),
-        'modulos_por_curso': {k: list(v) for k, v in modulos_por_curso.items()},
+        'modulos_por_curso': modulos_por_curso,
+        'capitulos_por_modulo': capitulos_por_modulo,
     })
 
 
@@ -74,10 +81,17 @@ def business(request):
 
     temarios_por_curso = defaultdict(list)
     modulos_por_curso = defaultdict(set)
+    capitulos_por_modulo = defaultdict(lambda: defaultdict(list))
 
     for temario in TemarioNormal.objects.select_related('curso', 'tipo_modulo'):
         temarios_por_curso[temario.curso.id].append(temario)
         modulos_por_curso[temario.curso.id].add(temario.tipo_modulo)
+        capitulos_por_modulo[temario.curso.id][temario.tipo_modulo.id].append(temario)
+
+    modulos_por_curso = {
+        k: sorted(list(v), key=lambda m: m.orden or 0)
+        for k, v in modulos_por_curso.items()
+    }
 
     return render(request, 'pages/bussines.html', {
         'docentes': docentes,
@@ -89,7 +103,8 @@ def business(request):
         'cursos': cursos,
         'marcas': marcas,
         'temarios_por_curso': dict(temarios_por_curso),
-        'modulos_por_curso': {k: list(v) for k, v in modulos_por_curso.items()},
+        'modulos_por_curso': modulos_por_curso,
+        'capitulos_por_modulo': capitulos_por_modulo,
     })
 
 
@@ -327,8 +342,8 @@ def free_formulario_bussines(request):
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 
-
 def cargar_modulos(request):
     curso_id = request.GET.get("curso_id")
     modulos = TipoModulo.objects.filter(curso_id=curso_id).values("id", "nombre_modulo")
     return JsonResponse(list(modulos), safe=False)
+

@@ -34,6 +34,7 @@ def validate_image_file(value):
     except Exception as e:
         raise ValidationError('El archivo no debe exceder 3MB')
 
+
 class Tema(models.Model):
     titulo = models.CharField(max_length=200)
 
@@ -62,6 +63,9 @@ class Curso(models.Model):
     titulo = models.CharField(max_length=200)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='cursos')
     descripcion = models.TextField(blank=True, null=True)
+    video_url = models.URLField(blank=True, null=True,
+        help_text="Enlace video"
+    )
 
     
     tipo_entrega = models.CharField(
@@ -122,8 +126,8 @@ class Temario(models.Model):
         on_delete=models.CASCADE,
         related_name='temarios'
     )
-    descripcion = models.TextField(blank=True)
     capitulo = models.CharField(max_length=255)
+    descripcion = models.TextField(blank=True)
 
     
 

@@ -27,11 +27,11 @@
         </button>
 
         <div x-show="selected === {{ forloop.counter }}" x-collapse class="mt-4 text-gray-300">
-          <div class="mt-6 space-y-3">
+          <div class="mt-6 space-y-3" x-data="{ activeModule: null }">
 
             {% for curso in capitulos_envivo %}
               {% if curso.tema == tema %}
-              <div class="p-3" x-data="{ showModules: false }">
+              <div class="p-0 md:p-3 lg:p-3">
                 <div class="flex justify-between items-center">
                   <h5 class="text-white font-medium text-lg">{{ curso.titulo }}</h5>
                   <div class="flex flex-col sm:flex-row gap-2 mt-1 items-center">
@@ -42,8 +42,8 @@
                       {% endfor %}
                     </div>
                     {% endif %}
-                    <a href="#" 
-                       @click.prevent="showModules = !showModules"
+                    <a href="#", 
+                       @click.prevent="activeModule = (activeModule === {{ curso.id }}) ? null : {{ curso.id }}"
                        class="flex items-center gap-1 text-white text-sm font-medium px-2 py-1.5 rounded transition-colors duration-200 shrink-0">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M6.5 4.5a.75.75 0 011.133-.64l6 4.5a.75.75 0 010 1.28l-6 4.5A.75.75 0 016.5 13.5v-9z" clip-rule="evenodd" />
@@ -52,20 +52,66 @@
                     </a>
                   </div>
                 </div>
-                    <div class="py-4">
-                    <p class="text-base text-gray-300">{{ curso.descripcion }}</p>
-                  </div>
+           
                 <!-- Caja de modulos -->
-                <div class="bg-slate-800 rounded-lg space-y-2 mt-3" x-show="showModules" x-collapse>
+                <div class="bg-slate-800 rounded-lg space-y-2 mt-3" x-show="activeModule === {{ curso.id }}" x-collapse
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform scale-y-0"
+                     x-transition:enter-end="opacity-100 transform scale-y-100"
+                     x-transition:leave="transition ease-in duration-300"
+                     x-transition:leave-start="opacity-100 transform scale-y-100"
+                     x-transition:leave-end="opacity-0 transform scale-y-0">
+
+                <div class="py-4 flex md:flex-row flex-col gap-4 justify-normal md:justify-between items-center bg-[#032744]">
+                    <p class="text-base text-gray-300">{{ curso.descripcion }}</p>
+                    {% if curso.video_url %}
+                      <iframe 
+                        class="w-full md:w-1/3 h-52"
+                        src="{{ curso.video_url }}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                      </iframe>
+                    {% endif %}
+                  </div>
                   
                   {% with modulos=modulos_por_curso|get_item:curso.id %}
                     {% if modulos %}
                     <div class="pb-0">
-                    <div class="bg-azul-vip py-10 px-4 pb-4 mb-8">
+                      <div class=" py-0 md:py-10 pl:py-10 px-0 md:px-4 lg:px-0 pb-4 mb-8">
                       {% for modulo in modulos %}
                         <div>
-                          <h5 class="text-white text-lg font-medium pb-2">{{ modulo.nombre }}</h5>
-                          <p class="text-white pb-6">{{ modulo.descripcion }}</p>
+                        <div class="bg-azul-vip p-4 relative">
+                          <h5 class="text-white text-lg font-medium pb-2">{{ modulo.nombre_modulo }}</h5>
+                          <p class="text-white pb-0 break-words whitespace-pre-line overflow-hidden line-clamp-3">{{ modulo.descripcion_modulo }}</p>
+                        </div>
+                         
+                          {% with capitulos=capitulos_por_modulo|get_item:curso.id|get_item:modulo.id %}
+                            {% if capitulos %}
+                              <div class="relative mt-6 mb-6">
+                                {% for cap in capitulos %}
+                                  <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-blue-500"></div>
+                                  <div class="relative flex items-start pb-4">
+                                    <div class="absolute left-0 w-6 h-6 bg-blue-500 rounded-full timeline-dot"></div>
+                                    <div class="ml-12 flex-1">
+                                      <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                          <h3 class="text-lg font-semibold text-white mb-2">{{ cap.capitulo }}</h3>
+                                        </div>
+                                        {% if cap.descripcion %}
+                                        <button 
+                                          onclick="openPopUpDescription('{{ cap.descripcion|escapejs }}')" 
+                                          class="ml-6 text-gray-300 hover:text-white text-sm font-medium transition-colors whitespace-nowrap">
+                                          ver descripción
+                                        </button>
+                                        {% endif %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% endfor %}
+                              </div>
+                            {% endif %}
+                          {% endwith %}
                         </div>
                       {% endfor %}
                     </div>
@@ -73,32 +119,6 @@
                     {% endif %}
                   {% endwith %}
 
-                  <div class="relative">
-                    {% with capitulos=temarios_por_curso|get_item:curso.id %}
-                      {% if capitulos %}
-                        {% for cap in capitulos %}
-                          <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-blue-500"></div>
-                          <div class="relative flex items-start pb-4">
-                            <div class="absolute left-0 w-6 h-6 bg-blue-500 rounded-full timeline-dot"></div>
-                            <div class="ml-12 flex-1">
-                              <div class="flex items-center justify-between">
-                                <div class="flex-1">
-                                  <h3 class="text-lg font-semibold text-white mb-2">{{ cap.capitulo }}</h3>
-                                </div>
-                                {% if cap.descripcion %}
-                                <button 
-                                  onclick="openPopUpDescription('{{ cap.descripcion|escapejs }}')" 
-                                  class="ml-6 text-gray-300 hover:text-white text-sm font-medium transition-colors whitespace-nowrap">
-                                  ver descripción
-                                </button>
-                                {% endif %}
-                              </div>
-                            </div>
-                          </div>
-                        {% endfor %}
-                      {% endif %}
-                    {% endwith %}
-                  </div>
                 </div>
 
               </div>
